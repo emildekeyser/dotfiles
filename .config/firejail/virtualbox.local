@@ -1,0 +1,2 @@
+whitelist ${HOME}/vm
+noblacklist ${HOME}/vm

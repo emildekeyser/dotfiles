@@ -1,0 +1,1 @@
+/home/user1/doc/clone/zsh-vim-mode/zsh-vim-mode.plugin.zsh

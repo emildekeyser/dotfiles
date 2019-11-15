@@ -1,0 +1,42 @@
+!! Global
+
+! *.font: xft:agave:size=13
+! *font: xft:agave:size=12
+*font: Fixedsys Excelsior:size=14
+*gapsize: 0
+!! *gapsize: 30
+*gapstep: 5
+
+!! i3wm
+
+i3wm.font: xft:Fixedsys Excelsior
+i3wm.fontsize: 12
+
+!! Urxvt
+
+URxvt.font: xft:Fixedsys Excelsior:size=12
+URxvt.scrollBar: false
+URxvt.cursorBlink: true
+URxvt.internalBorder: 30
+! URxvt.print-pipe: cat > $(mktemp --tmpdir=$HOME/tmp urxvt.XXXXXX)
+URxvt.print-pipe: $HOME/project/scripts/scrollbuffer-to-vim.sh
+
+! fix pager scrolling
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+URxvt.secondaryWheel: 1
+
+! Perl extensions
+! URxvt.perl-ext-common: default,url-select,resize-font,keyboard-select
+URxvt.perl-ext-common: default,resize-font
+!URxvt.keysym.C-Escape: perl:keyboard-select:activate
+
+! Url openenr
+!URxvt.keysym.C-k: perl:url-select:select_next
+!URxvt.url-select.launcher: /usr/bin/xdg-open
+!URxvt.url-select.underline: true
+
+! Font resize
+URxvt.keysym.C-KP_Subtract: resize-font:smaller
+URxvt.keysym.C-KP_Add: resize-font:bigger
+

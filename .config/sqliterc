@@ -1,0 +1,4 @@
+# .width 16 16 16 25 16 16 16 16 16 16
+.width 6 5 5 20 30 11 6 10 70
+.mode column
+.headers on

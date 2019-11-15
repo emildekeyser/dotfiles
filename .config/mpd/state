@@ -1,0 +1,123 @@
+sw_volume: 99
+audio_device_state:1:HDA Intel PCH
+audio_device_state:1:Visualizer feed
+state: pause
+current: 91
+time: 147.075000
+random: 0
+repeat: 1
+single: 0
+consume: 0
+crossfade: 5
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:burzum/1992.burzum/01.feeble_screams_from_forests_unknown.mp3
+1:burzum/1992.burzum/02.ea,_lord_of_the_depths.mp3
+2:burzum/1992.burzum/03.spell_of_destruction.mp3
+3:burzum/1992.burzum/04.channelling_the_power_of_souls_into_a_new_god.mp3
+4:burzum/1992.burzum/05.war.mp3
+5:burzum/1992.burzum/06.the_crying_orc.mp3
+6:burzum/1992.burzum/07.a_lost_forgotten_sad_spirit.mp3
+7:burzum/1992.burzum/08.my_journey_to_the_stars.mp3
+8:burzum/1992.burzum/09.dungeons_of_darkness.mp3
+9:burzum/1993.aske/01.stemmen_fra_taarnet.mp3
+10:burzum/1993.aske/02.dominus_sathanas.mp3
+11:burzum/1993.aske/03.a_lost_forgotten_sad_spirit.mp3
+12:burzum/1993.det_som_engang_var/01.den_onde_kysten.mp3
+13:burzum/1993.det_som_engang_var/02.key_to_the_gate.mp3
+14:burzum/1993.det_som_engang_var/03.en_ring_til_aa_herske.mp3
+15:burzum/1993.det_som_engang_var/04.lost_wisdom.mp3
+16:burzum/1993.det_som_engang_var/05.han_som_reiste.mp3
+17:burzum/1993.det_som_engang_var/06.naar_himmelen_klarner.mp3
+18:burzum/1993.det_som_engang_var/07.snu_mikrokosmos__tegn.mp3
+19:burzum/1993.det_som_engang_var/08.svarte_troner.mp3
+20:burzum/1993.hvis_lyset_tar_oss/01.det_som_en_gang_var.mp3
+21:burzum/1993.hvis_lyset_tar_oss/02.hvis_lyset_tar_oss.mp3
+22:burzum/1993.hvis_lyset_tar_oss/03.inn_i_slottet_fra_droemmen.mp3
+23:burzum/1993.hvis_lyset_tar_oss/04.tomhet.mp3
+24:burzum/1996.filosofem/01.burzum.mp3
+25:burzum/1996.filosofem/02.jesu_dod.mp3
+26:burzum/1996.filosofem/03.beholding_the_daughters_of_the_firmament.mp3
+27:burzum/1996.filosofem/04.decrepitude_i.mp3
+28:burzum/1996.filosofem/05.circumambulation_of_the_transcendental_pillar_of_singularity.mp3
+29:burzum/1996.filosofem/06.decrepitude_ii.mp3
+30:burzum/1997.daudi_baldrs/01.daudi_baldrs.mp3
+31:burzum/1997.daudi_baldrs/02.hermodr_a_helferd.mp3
+32:burzum/1997.daudi_baldrs/03.balferd_baldrs.mp3
+33:burzum/1997.daudi_baldrs/04.i_heimr_heljar.mp3
+34:burzum/1997.daudi_baldrs/05.illa_tidandi.mp3
+35:burzum/1997.daudi_baldrs/06.moti_ragnarokum.mp3
+36:burzum/1999.hlidskjalf/01.tuistos_herz.mp3
+37:burzum/1999.hlidskjalf/02.der_tod_wuotans.mp3
+38:burzum/1999.hlidskjalf/03.ansuzgardaraiwo.mp3
+39:burzum/1999.hlidskjalf/04.die_liebe_nerthus_.mp3
+40:burzum/1999.hlidskjalf/05.frijos_einsames_trauern.mp3
+41:burzum/1999.hlidskjalf/06.einfuhlungsvermogen.mp3
+42:burzum/1999.hlidskjalf/07.frijos_goldene_tranen.mp3
+43:burzum/1999.hlidskjalf/08.der_weinende_hadnur.mp3
+44:burzum/2010.belus/01.leukes_renkespill_(introduksjon).mp3
+45:burzum/2010.belus/02.belus__doed.mp3
+46:burzum/2010.belus/03.glemselens_elv.mp3
+47:burzum/2010.belus/04.kaimadalthas_nedstigning.mp3
+48:burzum/2010.belus/05.sverddans.mp3
+49:burzum/2010.belus/06.keliohesten.mp3
+50:burzum/2010.belus/07.morgenroede.mp3
+51:burzum/2010.belus/08.belus__tilbakekomst_(konklusjon).mp3
+52:burzum/2011._from_the_depths_of_darkness/01.the_coming_(introduction).mp3
+53:burzum/2011._from_the_depths_of_darkness/02.feeble_screams_from_forests_unknown.mp3
+54:burzum/2011._from_the_depths_of_darkness/03.sassu_wunnu_(introduction).mp3
+55:burzum/2011._from_the_depths_of_darkness/04.ea,_lord_of_the_depths.mp3
+56:burzum/2011._from_the_depths_of_darkness/05.spell_of_destruction.mp3
+57:burzum/2011._from_the_depths_of_darkness/06.a_lost_forgotten_sad_spirit.mp3
+58:burzum/2011._from_the_depths_of_darkness/07.my_journey_to_the_stars.mp3
+59:burzum/2011._from_the_depths_of_darkness/08.call_of_the_siren_(introduction).mp3
+60:burzum/2011._from_the_depths_of_darkness/09.key_to_the_gate.mp3
+61:burzum/2011._from_the_depths_of_darkness/10.turn_the_sign_of_the_microcosm_(snu_mikrokosmos__tegn).mp3
+62:burzum/2011._from_the_depths_of_darkness/11.channeling_the_power_of_minds_into_a_new_god.mp3
+63:burzum/2011.fallen/01.fra_verdenstreet.mp3
+64:burzum/2011.fallen/02.jeg_faller.mp3
+65:burzum/2011.fallen/03.valen.mp3
+66:burzum/2011.fallen/04.vanvidd.mp3
+67:burzum/2011.fallen/05.enhver_til_sitt.mp3
+68:burzum/2011.fallen/06.budstikken.mp3
+69:burzum/2011.fallen/07.til_hel_og_tilbake_igjen.mp3
+70:burzum/2012.umskiptar/01.blodstokkinn.mp3
+71:burzum/2012.umskiptar/02.joln.mp3
+72:burzum/2012.umskiptar/03.alfadanz.mp3
+73:burzum/2012.umskiptar/04.hit_helga_tre.mp3
+74:burzum/2012.umskiptar/05.aera.mp3
+75:burzum/2012.umskiptar/06.heidr.mp3
+76:burzum/2012.umskiptar/07.valgaldr.mp3
+77:burzum/2012.umskiptar/08.galgvidr.mp3
+78:burzum/2012.umskiptar/09.surtr_sunnan.mp3
+79:burzum/2012.umskiptar/10.gullaldr.mp3
+80:burzum/2012.umskiptar/11.nidhoggr.mp3
+81:burzum/2013.sol_austan,_mani_vestan/01.sol_austan.mp3
+82:burzum/2013.sol_austan,_mani_vestan/02.runar_munt_thu_finna.mp3
+83:burzum/2013.sol_austan,_mani_vestan/03.solarras.mp3
+84:burzum/2013.sol_austan,_mani_vestan/04.haugaeldr.mp3
+85:burzum/2013.sol_austan,_mani_vestan/05.fedrahellir.mp3
+86:burzum/2013.sol_austan,_mani_vestan/06.solargudi.mp3
+87:burzum/2013.sol_austan,_mani_vestan/07.ganga_at_solu.mp3
+88:burzum/2013.sol_austan,_mani_vestan/08.hid.mp3
+89:burzum/2013.sol_austan,_mani_vestan/09.heljarmyrkr.mp3
+90:burzum/2013.sol_austan,_mani_vestan/10.mani_vestan.mp3
+91:burzum/2013.sol_austan,_mani_vestan/11.solbjorg.mp3
+92:burzum/2014.the_ways_of_yore/01.god_from_the_machine.mp3
+93:burzum/2014.the_ways_of_yore/02.the_portal.mp3
+94:burzum/2014.the_ways_of_yore/03.heill_odinn.mp3
+95:burzum/2014.the_ways_of_yore/04.lady_in_the_lake.mp3
+96:burzum/2014.the_ways_of_yore/05.the_coming_of_ettins.mp3
+97:burzum/2014.the_ways_of_yore/06.the_reckoning_of_man.mp3
+98:burzum/2014.the_ways_of_yore/07.heil_freyja.mp3
+99:burzum/2014.the_ways_of_yore/08.the_ways_of_yore.mp3
+100:burzum/2014.the_ways_of_yore/09.ek_fellr_(i_am_falling).mp3
+101:burzum/2014.the_ways_of_yore/10.hall_of_the_fallen.mp3
+102:burzum/2014.the_ways_of_yore/11.autumn_leaves.mp3
+103:burzum/2014.the_ways_of_yore/12.emptiness.mp3
+104:burzum/2014.the_ways_of_yore/13.to_hel_and_back_again.mp3
+105:burzum/2015.forgotten_realms/01.forgotten_realms.mp3
+106:burzum/2015.mythic_dawn/01.mythic_dawn.mp3
+107:burzum/2015.thulean_mysteries/01.thulean_mysteries.mp3
+playlist_end
