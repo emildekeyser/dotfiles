@@ -237,8 +237,7 @@ MODE_INDICATOR_VLINE='V'
 # setopt NO_prompt_subst
 short_path()
 {
-	ret=$(pwd | sed -e "s:^$HOME:~:" -e 's/\/\./\//' | grep -o '/.' | tr -d '\n')
-	echo $ret
+	pwd | sed -e "s:^$HOME:/~:" -e 's/\/\./\//' | grep -o '/.' | sed 's:^/~:~:' | tr -d '\n'
 }
 [[ "$SSH_CONNECTION" == "" ]] || hostprompt="[$(hostname)]"
 autoload -Uz promptinit
