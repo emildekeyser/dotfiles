@@ -229,7 +229,7 @@ bindsym $mod+g mode "gaps"
 # $ex i3-msg workspace $ws10
 # $ex i3-msg workspace $ws2
 
-no_focus [class="Firefox"]
+no_focus [class="irefox"]
 for_window [class="orange"] floating enable
 for_window [class="Orange Canvas"] floating enable
 for_window [class="Thunderbird" window_role="messageWindow"] floating enable

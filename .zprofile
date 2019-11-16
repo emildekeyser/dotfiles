@@ -1,5 +1,6 @@
 source $HOME/.zshrc
 
-if [ "$(tty)" == "/dev/tty1" ]; then
-	startx $HOME/.config/X/xinitrc >> $HOME/.local/log/X 2>&1
-fi
+[ "$(tty)" == "/dev/tty1" ] || exit
+[ "$(hostname)" =~ "machine[0-9]*" ] || exit
+
+startx $HOME/.config/X/xinitrc >> $HOME/.local/log/X 2>&1
