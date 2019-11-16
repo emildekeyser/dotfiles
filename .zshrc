@@ -237,17 +237,16 @@ MODE_INDICATOR_VLINE='V'
 # setopt NO_prompt_subst
 short_path()
 {
-	local ret=''
-	[[ $PWD = /home/* ]] && ret='~'
-	ret=$ret$(pwd | sed "s:^$HOME::" | sed 's/\/\./\//' | grep -o '/.' | tr -d '\n')
+	ret=$(pwd | sed -e "s:^$HOME:~:" -e 's/\/\./\//' | grep -o '/.' | tr -d '\n')
 	echo $ret
 }
+[[ "$SSH_CONNECTION" == "" ]] || hostprompt="[$(hostname)]"
 autoload -Uz promptinit
 setopt PROMPT_SUBST
 promptinit
 PROMPT=$'%{\e[0;31;40m%}ᛃ %{\e[0;37;40m%}'
 # RPROMPT=$'%{\e[0;33;40m%}$(short_path)%{\e[0;37;40m%} %{\e[0;31;40m%}[${MODE_INDICATOR_PROMPT}]%{\e[0;37;40m%}' # prompt with mode inidcator
-RPROMPT=$'%{\e[0;33;40m%}$(short_path)%{\e[0;37;40m%} %{\e[0;31;40m%}%{\e[0;37;40m%}'
+RPROMPT=$'%{\e[0;33;40m%}$(short_path)%{\e[0;37;40m%} %{\e[0;31;40m%}$hostprompt%{\e[0;37;40m%}'
 #  text-style--^  ^--text-color
 
 # source =env_parallel.zsh
