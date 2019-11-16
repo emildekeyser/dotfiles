@@ -109,8 +109,10 @@ f()
 # rc
 eval $(dircolors)
 #source /usr/share/doc/pkgfile/command-not-found.zsh
-source ~/.cache/wal/colors-tty.sh
-cat ~/.cache/wal/sequences
+p1=~/.cache/wal/colors-tty.sh
+p2=~/.cache/wal/sequences
+[[ -r $p1 ]] && source $p1
+[[ -r $p2 ]] && cat $p2
 
 # vim edit
 autoload edit-command-line; zle -N edit-command-line
