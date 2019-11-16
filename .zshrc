@@ -262,6 +262,7 @@ trap catch_signal_usr1 USR1
 [ -f $plugindir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] \
     && source $plugindir/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-
-
+pp="$HOME/.local/share/nvim/site/autoload/plug.vim"
+[ -r $pp ] || curl -fLo $pp --create-dirs  \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
