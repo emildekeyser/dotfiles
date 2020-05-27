@@ -1,12 +1,12 @@
 library: library.db
-directory: /data/music/library/beets-artists/
+directory: /data/music/library/artists/
 
 import:
-    write: no
-    copy: no
+    write: yes
+    copy: yes
     move: no
     link: no
-    hardlink: yes
+    hardlink: no
     delete: no
     resume: ask
     incremental: no
@@ -16,8 +16,8 @@ import:
     none_rec_action: ask
     timid: no
     log: log.txt
-    autotag: no
-    # autotag: yes
+    # autotag: no
+    autotag: yes
     quiet: no
     singletons: no
     default_action: apply
@@ -39,21 +39,26 @@ ignore:
 - lost+found
 ignore_hidden: yes
 
-# replace:
-#     '[\\/]': _
-#     '^\.': _
-#     '[\x00-\x1f]': _
-#     '[<>:"\?\*\|]': _
-#     '\.$': _
-#     \s+$: ''
-#     ^\s+: ''
-#     ^-: _
+replace:
+    \s+: _
+    '[\\/]': _
+    '^\.': _
+    '[\x00-\x1f]': _
+    # '[<>:"\?\*\|]': _
+    '[<>"\?\*\|]': _
+    \:: _
+    '\.$': _
+    \s+$: ''
+    ^\s+: ''
+    ^-: ''
+
 path_sep_replace: _
 asciify_paths: no
 art_filename: cover
 max_filename_length: 0
 
-plugins: []
+# plugins: [fetchart, edit, embedart]
+plugins: [fetchart, edit]
 pluginpath: []
 threaded: yes
 timeout: 5.0
@@ -88,9 +93,12 @@ sort_item: artist+ album+ disc+ track+
 sort_case_insensitive: yes
 
 paths:
-    default: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
-    singleton: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
-    comp: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
+    default: %lower{$artist}/$year.%lower{$album}/%lower{$track}.%lower{$title}
+    singleton: %lower{$artist}/$year.%lower{$album}/%lower{$track}.%lower{$title}
+    comp: %lower{$artist}/$year.%lower{$album}/%lower{$track}.%lower{$title}
+    # default: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
+    # singleton: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
+    # comp: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
     # singleton: $albumartist/$album/$track $title
     # comp: $albumartist/$album/$track $title
     # comp: $genre/$artist/$album%aunique{}/$track $title
@@ -140,4 +148,3 @@ match:
     ignore_video_tracks: yes
     track_length_grace: 10
     track_length_max: 30
-

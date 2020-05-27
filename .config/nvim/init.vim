@@ -5,8 +5,6 @@ call plug#begin('~/.config/nvim/plugins')
 
 Plug 'junegunn/vim-plug'
 Plug 'dylanaraps/wal.vim'
-" Plug 'itchyny/calendar.vim'
-" Plug 'mdempsky/gocode', { 'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
 Plug 'aserebryakov/vim-todo-lists'
 Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
@@ -17,9 +15,13 @@ Plug 'vim-scripts/dbext.vim', { 'for': 'sql' }
 Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'sirver/ultisnips'
+" Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'vim-airline/vim-airline'
+" Plug 'valloric/youcompleteme'
+Plug 'elixir-lang/vim-elixir'
+Plug 'thinca/vim-ref'
+Plug 'awetzel/elixir.nvim', { 'do': 'yes \| ./install.sh' }
 
 call plug#end()
 
@@ -110,6 +112,9 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 set ignorecase      " Do case insensitive matching
 set smartcase       " Do smart case matching
+" Show matching searches while typing search/substitute
+" split => window with matches
+set inccommand=nosplit
 nnoremap <leader>l :nohlsearch<CR>
 
 "}}}
@@ -147,8 +152,7 @@ function! WordPerfect()
     normal 'm
 endfunction
 
-" Hotkeys
-" -------
+" [Hotkeys]
 
 set clipboard=unnamedplus " use the clipboard (not the primary selection)
 
@@ -185,9 +189,20 @@ nnoremap <leader>g :silent grep  .<left><left>
 " nnoremap <leader><CR> :write <bar> silent !master-builder %:p<CR>
 nnoremap <leader><CR> :make<CR>
 
+" [File(type) specific]
+autocmd BufNewFile,BufRead /home/user1/.config/newsboat/* set comments=:#
+autocmd BufNewFile,BufRead *.md,*.txt,*.tex set textwidth=80
+
+" Switching current file
+" nnoremap <leader><TAB> :bn<CR>
+nnoremap <leader><TAB> :b #<CR>
+
+nnoremap <leader>d :bdelete<CR>
+
 " FZF
-nnoremap <leader>f :FZF<CR>
 let g:fzf_command_prefix = 'Fzf'
+nnoremap <leader>f :FZF<CR>
+nnoremap <leader>b :FzfBuffers<CR>
 
 " todo
 "nunmap <buffer> <Space> :VimTodoListsToggleItem<CR>

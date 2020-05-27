@@ -1,18 +1,28 @@
 #!/bin/sh
 
-numlockx
+[ $(hostname) != machine2 ] && numlockx on
 setxkbmap be
-setterm -blank 0 -powersave off -powerdown 0
-xset -dpms s off
+# Enable screensave:
+# setterm -blank 0 -powersave off -powerdown 0
+# xset -dpms s off
 
 xrdb -merge $HOME/.config/X/Xresources
-xsetroot -solid grey
+xsetroot -solid black
 
 if [ $(hostname) == machine1 ]
 then
-    # $HOME/.config/arandr-layout.sh
-    $HOME/.config/arandr-layout-scaled.sh
-    xrandr --output HDMI-1 --scale 1.25x1.25
+    $HOME/.config/arandr-layout.sh
+    # $HOME/.config/arandr-layout-scaled.sh
+    # xrandr --output HDMI-1 --scale 1.25x1.25
+    bar
+else
+    double-monitor
 fi
+
+# This if for dunst
+[[ -x $(which systemctl 2>/dev/null) ]] && \
+    systemctl --user import-environment DISPLAY
+
+theme -R
 
 exec i3 >> $HOME/.local/log/i3 2>&1

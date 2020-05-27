@@ -6,8 +6,6 @@
 set $ex exec --no-startup-id
 set $mod Mod4 
 
-$ex wal -R
-
 set_from_resource $fg i3wm.foreground #f0f0f0
 set_from_resource $bg i3wm.background #f0f0f0
 set_from_resource $border i3wm.color5 #f0f0f0
@@ -29,16 +27,25 @@ focus_on_window_activation focus
 floating_modifier Mod4
 
 # program shortcuts
-# bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return $ex urxvt 
+bindsym $mod+Return $ex urxvt
 bindsym $mod+Shift+Return $ex ~/project/scripts/terminal-here.sh
-
 bindsym $mod+BackSpace $ex application-launcher
-bindsym $mod+i $ex $BROWSER
-bindsym $mod+c $ex thunderbird
-bindsym $mod+Shift+p $ex passmenu -l 40
-
+bindsym $mod+i $ex brave-bin || brave
+bindsym $mod+c $ex ~/project/scripts/default-layout.sh
+bindsym $mod+Shift+p $ex passmenu
+bindsym $mod+Shift+u $ex ~/project/scripts/usermenu.sh
 bindsym $mod+Print $ex maim -s ~/tmp/screenshot.png
+# bindsym $mod+d $ex ~/project/scripts/bookmark.sh
+# bindsym $mod+Insert $ex ~/project/scripts/fillform.sh
+bindsym $mod+Escape $ex esc-menu
+# bindsym $mod+Escape $ex i3 exit
+# bindsym $mod+Shift+F5 reload
+# bindsym $mod+Shift+F6 restart
+# bindsym $mod+F4 $ex i3lock
+# bindsym $mod+Shift+F4 exec i3 exit
+
+bindsym Menu $ex xdotool click 1
+bindsym Shift+Menu $ex xdotool click 3
 
 # kill focused window
 bindsym $mod+q kill
@@ -106,6 +113,12 @@ bindsym $mod+exclam workspace $ws8
 bindsym $mod+ccedilla workspace $ws9
 bindsym $mod+agrave workspace $ws10
 
+bindsym $mod+F12 $ex notify-send "syncing" \
+    && synchronize > ~/.local/log/synclog \
+    && polybar-msg hook sync-count 1 \
+    && notify-send "sync complete"
+# bindsym $mod+F11 workspace org
+
 # move focused container to workspace
 bindsym $mod+Shift+ampersand move container to workspace $ws1
 bindsym $mod+Shift+eacute move container to workspace $ws2
@@ -121,12 +134,6 @@ bindsym $mod+Shift+agrave move container to workspace $ws10
 # move ws to output
 bindsym $mod+Prior move workspace to output left
 bindsym $mod+Next move workspace to output right
-
-bindsym $mod+Escape $ex esc-menu
-# bindsym $mod+Shift+F5 reload
-# bindsym $mod+Shift+F6 restart
-# bindsym $mod+F4 $ex i3lock
-# bindsym $mod+Shift+F4 exec i3 exit
 
 # mode "resize" {
 #         bindsym h resize shrink width 10 px or 10 ppt
@@ -163,27 +170,27 @@ bindsym $mod+Shift+Control+l resize grow width 1 px or 1 ppt
 #	modifier none
 #}
 
-bar {
-	i3bar_command ~/project/scripts/bar.sh
-}
+# bar {
+# 	i3bar_command ~/project/scripts/bar.sh
+# }
 bindsym $mod+ugrave $ex ~/project/scripts/bar.sh toggle
 
 #bindsym $mod+Shift+t $ex compton-trans -c 80
 #bindsym $mod+t $ex compton-trans -c 200
 
-# >> Volume + Media Control
+# Audio
 
-#set $volume_up5 pulsemixer --change-volume 5
-#set $volume_down5 pulsemixer --change-volume -5
-#set $volume_up1 pulsemixer --change-volume 1
-#set $volume_down1 pulsemixer --change-volume -1
-#set $volume_mute pulsemixer --toggle-mute
+set $volume_up5 pulsemixer --change-volume 5
+set $volume_down5 pulsemixer --change-volume -5
+set $volume_up1 pulsemixer --change-volume 1
+set $volume_down1 pulsemixer --change-volume -1
+set $volume_mute pulsemixer --toggle-mute
 
-set $volume_up5 amixer sset Master 5%+
-set $volume_down5 amixer sset Master 5%-
-set $volume_up1 amixer sset Master 1%+
-set $volume_down1 amixer sset Master 1%-
-set $volume_mute amixer sset Master toggle
+# set $volume_up5 amixer sset Master 5%+
+# set $volume_down5 amixer sset Master 5%-
+# set $volume_up1 amixer sset Master 1%+
+# set $volume_down1 amixer sset Master 1%-
+# set $volume_mute amixer sset Master toggle
 
 bindsym XF86AudioRaiseVolume $ex $volume_up5
 bindsym XF86AudioLowerVolume $ex $volume_down5
@@ -193,24 +200,17 @@ bindsym $mod+KP_Subtract     $ex $volume_down5
 bindsym $mod+KP_Multiply     $ex $volume_mute
 bindsym $mod+KP_Divide 	     $ex mpc toggle
 bindsym $mod+Shift+less	     $ex mpc next
-bindsym $mod+less	     $ex mpc prev
+bindsym $mod+less	         $ex mpc prev
 bindsym $mod+Shift+KP_Add    $ex $volume_up1
 bindsym $mod+Shift+KP_Subtract $ex $volume_down1
 
-# background cycling
-# bindsym $mod+Tab $ex ~/project/scripts/wal-cycle.sh
-
-# Screenshot
-# bindsym $mod+ $ex import $HOME/tmp/screenshot.jpeg # WHY ???
-
-# gaps
+# Gaps
 set_from_resource $gapsize i3wm.gapsize 30
 # for_window [class="^.*"] border pixel 2
 gaps inner $gapsize
 # gaps outer 30
 # bindsym $mod+g gaps inner all plus 5 
 # bindsym $mod+Shift+g gaps inner all set 0
-
 mode "gaps"
 {
 	bindsym KP_Add $ex "~/project/scripts/gaps.sh increase"
@@ -221,20 +221,15 @@ mode "gaps"
 }
 bindsym $mod+g mode "gaps"
 
-# Start Programs
-# $ex i3-msg 'workspace 2; workspace 10; exec urxvt -e zsh -c "telegram-cli"; workspace 1'
-# $ex urxvt -e zsh -c "nvim -c Calendar"
-# $ex urxvt -e zsh -c "nvim ~/doc/todo.md"
-# $ex i3-msg 'workspace 3; exec firefox'
-# $ex i3-msg workspace $ws10
-# $ex i3-msg workspace $ws2
-
-no_focus [class="Firefox"]
-no_focus [class="firefox"]
+# Floats
 for_window [class="orange"] floating enable
 for_window [class="Orange Canvas"] floating enable
 for_window [class="Thunderbird" window_role="messageWindow"] floating enable
 for_window [class="Thunderbird" window_role="Msgcompose"] floating enable
 for_window [class="PacketTracer7"] floating enable
 for_window [class="PacketTracer7" title="Cisco Packet Tracer"] floating disable
-for_window [class="mpv"] floating enable
+for_window [class="floating-terminal"] floating enable
+for_window [title="floating-terminal"] floating enable
+for_window [title="Android Emulator"] floating enable
+# for_window [class="mpv"] floating enable
+

@@ -28,7 +28,7 @@ URxvt.secondaryWheel: 1
 
 ! Perl extensions
 ! URxvt.perl-ext-common: default,url-select,resize-font,keyboard-select
-URxvt.perl-ext-common: default,resize-font
+URxvt.perl-ext-common: default,resize-font,font-size
 !URxvt.keysym.C-Escape: perl:keyboard-select:activate
 
 ! Url openenr

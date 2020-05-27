@@ -53,16 +53,14 @@ override-redirect = false
 ; line-color = #00000000
 ; line-color  = ${xrdb:color2:#444}
 
-; border-left-size = 30%
-; border-right-size = 30%
-; border-top-size = 17%
-; border-bottom-size = 4
-; border-color = #00000000
-; border-color   = ${xrdb:color6:#444}
+border-left-size = 5
+border-right-size = 5
+border-top-size = 5
+border-bottom-size = 5
+border-color = ${xresources.background}
 
 padding-left = 1
 padding-right = 1
-
 module-margin-left = 1
 module-margin-right = 1
 
@@ -73,86 +71,28 @@ font-3 = siji:pixelsize=10;1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = alsa eth wlan date battery
+modules-right = sync-count pulseaudio usb-wlan eth date battery
+; modules-right = alsa usb-wlan eth date battery
 
 tray-position = right
 tray-padding = 2
 tray-transparent = true
 ;tray-background = #0063ff
-
-[bar/floating-bar]
-monitor = ${env:MONITOR:LVDS-1-1}
-# width = 94%
-width = 100%:-60
-height = 26
-# offset-x = 3%
-offset-x = 30
-# offset-y = 2%
-offset-y = 30
-; radius = 6.0
-fixed-center = true
-enable-ipc = true
-; background = #00000000
-background = ${xresources.background}
-; background-0 = #00000000
-foreground = ${xresources.foreground}
-; dim-value = 0
-
-wm-restack = i3
-override-redirect = true
-
-line-size = 0
-;line-color = #f00
-line-color = ${xresources.foreground-alt}
-
-; border-left-size = 30%
-; border-right-size = 30%
-; border-top-size = 17%
-; border-bottom-size = 0%
-; border-color = #00000000
-
-padding-left = 2
-padding-right = 2
-
-module-margin-left = 2
-module-margin-right = 2
-
-font-0 = Fixedsys Excelsior 3.01:size=14
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
-
-modules-left = i3
-modules-center = xwindow
-modules-right = pulseaudio eth wlan date 
-
-tray-position = right
-tray-padding = 2
-tray-transparent = true
-;tray-background = #0063ff
-
-[bar/invisible-dummy]
-monitor = ${env:MONITOR:LVDS-1-1}
-width = 100%
-height = 60
-background = #00000000
-; background = ${xresources.color8}
-wm-restack = i3
-override-redirect = false
-modules-center = dummy-module
-enable-ipc = true
 
 [module/i3]
 type = internal/i3
 format = <label-state> <label-mode>
-index-sort = true
+index-sort = false
 wrapping-scroll = false
 enable-click = true
 
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
 
-label-mode-background = ${xresources.foreground-alt}
-label-mode-foreground = ${xresources.foreground}
+label-mode-background = ${xresources.color6}
+label-mode-foreground = ${xresources.background}
+; label-mode-background = ${xresources.foreground-alt}
+; label-mode-foreground = ${xresources.foreground}
 label-mode-padding = 4
 
 ; focused = Active workspace on focused monitor
@@ -217,10 +157,27 @@ format-full-foreground = ${xresources.background}
 format-full-background = ${xresources.color6}
 format-full-padding = 1.5
 
+[module/sync-count]
+type = custom/ipc
+hook-0 = synchronize --dry-run --itemize-changes | \grep -P '^<' | wc -l
+initial = 0
+format-foreground = ${xresources.background}
+format-background = ${xresources.color6}
+format-padding = 1.5
+
+[module/usb-wlan]
+type = custom/ipc
+hook-0 = wlan-status
+initial = 1
+format-foreground = ${xresources.background}
+format-background = ${xresources.color6}
+format-padding = 1.5
+
 [module/wlan]
 type = internal/network
-interface = wlp3s0
+interface = ${env:WLAN:wlp3s0}
 interval = 3.0
+unknown-as-up = true
 
 ; format-connected = <ramp-signal> <label-connected>
 format-connected = <label-connected>
@@ -233,14 +190,14 @@ label-connected-padding = 1.5
 
 ; format-disconnected = <label-disconnected>
 ; format-disconnected-underline = ${self.format-connected-underline}
-label-disconnected = 
+label-disconnected =
 label-disconnected-foreground = ${self.label-connected-foreground}
 label-disconnected-background = ${self.label-connected-foreground}
 label-disconnected-padding = ${self.label-connected-foreground}
 
 [module/eth]
 type = internal/network
-interface = enp2s0
+interface = ${env:ETH:enp2s0}
 interval = 3.0
 
 format-connected = <label-connected>
@@ -270,38 +227,37 @@ format-foreground = ${xresources.background}
 format-background = ${xresources.color6}
 format-padding = 1.5
 
+[module/pulseaudio]
+type = internal/pulseaudio
 
-;[module/pulseaudio]
-;type = internal/pulseaudio
-;
-;; format-volume = <label-volume> <bar-volume>
-;label-volume = %percentage%%
-;label-volume-foreground = ${xresources.background}
-;label-volume-background = ${xresources.color6}
-;label-volume-underline = ${xresources.color6}
-;label-volume-padding = 1.5
-;
-;label-muted = M
-;label-muted-foreground = ${xresources.background}
-;label-muted-background = ${xresources.color6}
-;label-muted-padding = 1.5
-;
-;bar-volume-width = 10
-;bar-volume-foreground-0 = #55aa55
-;bar-volume-foreground-1 = #55aa55
-;bar-volume-foreground-2 = #55aa55
-;bar-volume-foreground-3 = #55aa55
-;bar-volume-foreground-4 = #55aa55
-;bar-volume-foreground-5 = #f5a70a
-;bar-volume-foreground-6 = #ff5555
-;bar-volume-gradient = false
-;bar-volume-indicator = |
-;bar-volume-indicator-font = 2
-;bar-volume-fill = ─
-;bar-volume-fill-font = 2
-;bar-volume-empty = ─
-;bar-volume-empty-font = 2
-;bar-volume-empty-foreground = ${xresources.foreground-alt}
+; format-volume = <label-volume> <bar-volume>
+label-volume = %percentage%%
+label-volume-foreground = ${xresources.background}
+label-volume-background = ${xresources.color6}
+label-volume-underline = ${xresources.color6}
+label-volume-padding = 1.5
+
+label-muted = M
+label-muted-foreground = ${xresources.background}
+label-muted-background = ${xresources.color6}
+label-muted-padding = 1.5
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${xresources.foreground-alt}
 
 [module/alsa]
 type = internal/alsa
@@ -317,15 +273,10 @@ label-muted-foreground = ${xresources.background}
 label-muted-background = ${xresources.color6}
 label-muted-padding = 1.5
 
-[module/working]
-type = custom/ipc
-hook-0 = work print
-initial = 1
-
-;[module/dummy-module]
-;type = custom/text
-;content = a
-;content-foreground = #00000000
+; [module/testtext]
+; type = custom/text
+; content = ${env:WLAN}
+; content-foreground = #00000000
 
 [settings]
 screenchange-reload = true
