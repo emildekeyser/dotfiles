@@ -1,2 +1,2 @@
-whitelist ${HOME}/vm
-noblacklist ${HOME}/vm
+whitelist ${HOME}/project/vm
+noblacklist ${HOME}/project/vm

@@ -1,0 +1,15 @@
+[user]
+	name = emil
+	email = emil.dekeyser@student.ucll.be
+
+[merge]
+	tool = neovim
+[mergetool]
+	prompt = true
+[mergetool "neovim"]
+	cmd = "nvim $MERGED"
+[difftool]
+	prompt = true
+[diff]
+	tool = neovim
+	guitool = neovim

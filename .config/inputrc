@@ -3,3 +3,9 @@ set keymap vi-command
 Control-l: clear-screen
 set keymap vi-insert
 Control-l: clear-screen
+
+set blink-matching-paren On
+set colored-completion-prefix On
+set colored-stats On
+set completion-display-width 0
+set enable-keypad On
