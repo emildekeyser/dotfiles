@@ -1,3 +1,12 @@
+#        :::::::::: ::::    ::: :::     ::: 
+#       :+:        :+:+:   :+: :+:     :+:  
+#      +:+        :+:+:+  +:+ +:+     +:+   
+#     +#++:++#   +#+ +:+ +#+ +#+     +:+    
+#    +#+        +#+  +#+#+#  +#+   +#+      
+#   #+#        #+#   #+#+#   #+#+#+#        
+#  ########## ###    ####     ###           
+# {{{ env
+
 export PATH="$HOME/.local/bin:$PATH"
 fpath=(~/.config/zsh/functions $fpath)
 
@@ -14,6 +23,8 @@ export XDG_DATA_DIRS=${XDG_DATA_DIRS=/usr/share:/usr/share/local}
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
+export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
+export MAILDIR=$XDG_DATA_HOME/mail
 export GOPATH=$HOME/.cache/go:$HOME/project/go
 export npm_config_prefix="$HOME/.local/node_modules"
 export HISTFILE=$HOME/.local/history/zsh_history
@@ -43,8 +54,6 @@ export WGETRC="$HOME/.config/wgetrc"
 # Options
 export DIANA_SECRET_TOKEN=386a2506-fcea-4c79-9206-8cd7e8c43cc7
 export FZF_DEFAULT_OPTS="--layout=reverse"
-export HISTSIZE=10000000000000
-export SAVEHIST=10000000000000
 export LESS='-R' # colors=always
 export CLICOLOR_FORCE=1 # colors=always with tree
 export PROGRESS_ARGS='--monitor-continuously --wait'
@@ -61,21 +70,38 @@ case $(hostname)  in
         ;;
 esac
 
-#	 
-#	        |_)            
-#	   _` | | |  _` |  __| 
-#	  (   | | | (   |\__ \ 
-#	 \__,_|_|_|\__,_|____/ 
-#	                       
-#
+typeset -A key
+key=(
+	BackSpace  "${terminfo[kbs]}"
+	Home       "${terminfo[khome]}"
+	End        "${terminfo[kend]}"
+	Insert     "${terminfo[kich1]}"
+	Delete     "${terminfo[kdch1]}"
+	Up         "${terminfo[kcuu1]}"
+	Down       "${terminfo[kcud1]}"
+	Left       "${terminfo[kcub1]}"
+	Right      "${terminfo[kcuf1]}"
+	PageUp     "${terminfo[kpp]}"
+	PageDown   "${terminfo[knp]}"
+)
 
+# }}}
+
+#            :::     :::        :::::::::::     :::      :::::::: 
+#         :+: :+:   :+:            :+:       :+: :+:   :+:    :+: 
+#       +:+   +:+  +:+            +:+      +:+   +:+  +:+         
+#     +#++:++#++: +#+            +#+     +#++:++#++: +#++:++#++   
+#    +#+     +#+ +#+            +#+     +#+     +#+        +#+    
+#   #+#     #+# #+#            #+#     #+#     #+# #+#    #+#     
+#  ###     ### ########## ########### ###     ###  ########       
+# {{{ alias
 # Default flags (interactive shell only)
 alias grep='grep -iP --color=auto'
 alias diff='diff --color=auto'
 alias ls='ls --color=auto'
 alias mpv='mpv --audio-display=no'
 alias ffmpeg='ffmpeg -hide_banner'
-alias ffplay='ffprobe -hide_banner'
+alias ffplay='ffplay -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
 alias emerge='sudo emerge --ask'
 alias watch='watch --color --interval=0.5'
@@ -86,6 +112,7 @@ alias du='du -sh'
 alias irssi='irssi --config=~/.config/irssi/config --home=$XDG_DATA_HOME/irssi'
 alias sqlite3='sqlite3 -init ~/.config/sqliterc'
 alias units='units --history ~/.local/history/units'
+alias abook='abook --config $XDG_CONFIG_HOME/abookrc --datafile $XDG_DATA_HOME/abook-addressbook'
 
 # Shortcuts
 alias y=tree
@@ -95,9 +122,9 @@ alias l='ls -CF1 --group-directories-first'
 alias ll='ls -lhF --group-directories-first'
 alias la='l -A'
 alias lla='ll -A'
-alias u='v ~/ucll/u.todo'
-alias t='v ~/project/me/todo/now.todo'
-alias T='v ~/project/me/todo/project.todo'
+alias u='v ~/ucll/planning.md'
+alias t='v ~/project/me/todo/now.md'
+alias T='v ~/project/me/todo/projects.md'
 alias tg='telegram-cli -NfW'
 alias py=python
 alias md='mkdir -p'
@@ -151,9 +178,21 @@ alias dotgit-private='git --work-tree=$HOME --git-dir=$HOME/project/dotfiles/dot
 alias etcgit-arch='git --work-tree=/etc --git-dir=$HOME/project/dotfiles/etc-arch'
 alias etcgit-gentoo='git --work-tree=/etc --git-dir=$HOME/project/dotfiles/etc-gentoo'
 alias edit-sleep='sudo -e /etc/systemd/sleep.conf'
-alias random_string='tr -dc [:alnum:] < /dev/urandom | head -c50'
+alias random-string='tr -dc [:alnum:] < /dev/urandom | head -c50'
+# Parameter needs to end in "
+alias add-email-address='abook --add-email-quiet <<< "From '
+alias email-address-archive='fzf < ~/.local/all-email-addresses.txt | c'
 
-# Functions
+# }}}
+
+#        :::::::::: :::    ::: ::::    :::  :::::::: 
+#       :+:        :+:    :+: :+:+:   :+: :+:    :+: 
+#      +:+        +:+    +:+ :+:+:+  +:+ +:+         
+#     :#::+::#   +#+    +:+ +#+ +:+ +#+ +#+          
+#    +#+        +#+    +#+ +#+  +#+#+# +#+           
+#   #+#        #+#    #+# #+#   #+#+# #+#    #+#     
+#  ###         ########  ###    ####  ########       
+# {{{ functions
 f()
 {
 	search=$(echo $@ | tr ' ' '*')
@@ -176,64 +215,53 @@ try_source() {
 #     while { true } { printf "($repl_state)>" ; read line ; repl_eval "$line" }
 # }
 
-typeset -A key
-key=(
-	BackSpace  "${terminfo[kbs]}"
-	Home       "${terminfo[khome]}"
-	End        "${terminfo[kend]}"
-	Insert     "${terminfo[kich1]}"
-	Delete     "${terminfo[kdch1]}"
-	Up         "${terminfo[kcuu1]}"
-	Down       "${terminfo[kcud1]}"
-	Left       "${terminfo[kcub1]}"
-	Right      "${terminfo[kcuf1]}"
-	PageUp     "${terminfo[kpp]}"
-	PageDown   "${terminfo[knp]}"
-)
+# }}}
 
-# rc
+#        :::::::::   :::::::: 
+#       :+:    :+: :+:    :+: 
+#      +:+    +:+ +:+         
+#     +#++:++#:  +#+          
+#    +#+    +#+ +#+           
+#   #+#    #+# #+#    #+#     
+#  ###    ###  ########       
+# {{{
+
 eval $(dircolors)
-p=~/.cache/wal/colors.sh
-[[ -r $p ]] && source $p
-p=~/.cache/wal/sequences
-[[ -r $p ]] && cat $p
+[[ -r ~/.cache/wal/sequences ]] && cat ~/.cache/wal/sequences
+try_source ~/.cache/wal/colors.sh
+try_source ~/.config/zsh/zsh-vim-mode.plugin.zsh
+try_source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh  # Gentoo
+try_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # Arch
+try_source /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
+try_source /usr/share/doc/pkgfile/command-not-found.zsh
 
-# vim edit
-autoload edit-command-line; zle -N edit-command-line
+# [[ $- == *i* ]] \ # check if interactive
+#     && [ -r ~/doc/todo/now.todo ] \
+#     && echo : && cat ~/doc/todo/now.todo
+# }}}
+
+#        ::::::::  ::::::::: ::::::::::: ::::::::::: ::::::::  ::::    :::  :::::::: 
+#      :+:    :+: :+:    :+:    :+:         :+:    :+:    :+: :+:+:   :+: :+:    :+: 
+#     +:+    +:+ +:+    +:+    +:+         +:+    +:+    +:+ :+:+:+  +:+ +:+         
+#    +#+    +:+ +#++:++#+     +#+         +#+    +#+    +:+ +#+ +:+ +#+ +#++:++#++   
+#   +#+    +#+ +#+           +#+         +#+    +#+    +#+ +#+  +#+#+#        +#+    
+#  #+#    #+# #+#           #+#         #+#    #+#    #+# #+#   #+#+# #+#    #+#     
+#  ########  ###           ###     ########### ########  ###    ####  ########       
+# {{{ options
+
+# Edit command line in $EDITOR.
+autoload edit-command-line
+zle -N edit-command-line
 bindkey -M vicmd " e" edit-command-line
 
-# ignore interactive comments
+# Ignore comments on interactive cli.
 set -k
 
-#man for last cmd
-bindkey -M vicmd " m" man
-
-## Vi beam on insert
-# Remove mode switching delay.
-#KEYTIMEOUT=5
-# Change cursor shape for different vi modes.
-# function zle-keymap-select {
-#     if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
-# 		    echo -ne '\e[1 q'
-#     elif [[ ${KEYMAP} == main ]] ||
-#     	[[ ${KEYMAP} == viins ]] ||
-#     	[[ ${KEYMAP} = '' ]] ||
-#     	[[ $1 = 'beam' ]]; then
-#     	echo -ne '\e[5 q'
-#     fi
-# }
-# zle -N zle-keymap-select
-
-# # Use beam shape cursor on startup.
-# print -Pn '\e[5 q'
-# precmd() {
-# 	# Use beam shape cursor for each new prompt.
-# 	echo -ne '\e[5 q'
-# 	# set title
-# 	print -Pn "\e]0;zsh\a" 
-# }
-
 # History
+export HISTSIZE=10000000000000
+export SAVEHIST=10000000000000
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_SPACE
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
@@ -243,16 +271,11 @@ bindkey -- "^P"   up-line-or-beginning-search
 bindkey -- "^N" down-line-or-beginning-search
 bindkey "^R" history-incremental-search-backward
 
-# rehash on completion
-# zstyle ':completion:*' rehash true
-
-# activate help
+# Help
 autoload -Uz run-help
-# unalias run-help
 alias help=run-help
-zle -N man
 
-# The following lines were added by compinstall
+# Completion
 zstyle ':completion:*' auto-description '%d'
 zstyle ':completion:*' completer _oldlist _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' expand prefix suffix
@@ -267,60 +290,39 @@ zstyle ':completion:*' menu select=1
 zstyle ':completion:*' original true
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 zstyle ':completion:*' verbose true
-
-autoload -Uz compinit
-compinit -d $HOME/.cache/zcompdump-$ZSH_VERSION
-
 zmodload zsh/complist
 bindkey -M menuselect 'h' vi-backward-char
 bindkey -M menuselect 'k' vi-up-line-or-history
 bindkey -M menuselect 'l' vi-forward-char
 bindkey -M menuselect 'j' vi-down-line-or-history
 
-#Directory remember
+
+# Compilation
+autoload -Uz compinit
+compinit -d $HOME/.cache/zcompdump-$ZSH_VERSION
+
+# Directory stack
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':completion:*:*:cdr:*:*' menu selection
 zstyle ':chpwd:*' recent-dirs-max 40
 zstyle ':chpwd:*' recent-dirs-file ~/.local/history/chpwd-recent-dirs
 
-#cd $(head -1 ~/.chpwd-recent-dirs | cut -c2-) # TODO
-
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_SPACE
-
+# Misc
 setopt autocd
 setopt beep
 setopt extendedglob
 setopt notify
 unsetopt nomatch
-# setopt PRINT_EXIT_VALUE
+setopt PRINT_EXIT_VALUE
 
-# bindkey -v
-
-# if [[ $1 == eval ]]
-# then
-#     "$@"
-# set --
-# fi
-
-source ~/.config/zsh/zsh-vim-mode.plugin.zsh
-
-# Cursor
+# Cursor config (vim-plugin)
 MODE_CURSOR_DEFAULT="blinking bar"
 MODE_CURSOR_VICMD="steady block"
 MODE_CURSOR_VIINS="blinking bar"
 MODE_CURSOR_SEARCH="steady underline"
 
-MODE_INDICATOR_VIINS='I'
-MODE_INDICATOR_VICMD='C'
-MODE_INDICATOR_REPLACE='R'
-MODE_INDICATOR_SEARCH='S'
-MODE_INDICATOR_VISUAL='V'
-MODE_INDICATOR_VLINE='V'
-
 # Prompt
-# setopt NO_prompt_subst
 short_path()
 {
 	pwd | sed -e "s:^$HOME:/~:" -e 's/\/\./\//' | grep -o '/.' | sed 's:^/~:~:' | tr -d '\n'
@@ -332,9 +334,6 @@ promptinit
 PROMPT=$'%{\e[0;31;40m%}ᛃ %{\e[0;37;40m%}'
 # RPROMPT=$'%{\e[0;33;40m%}$(short_path)%{\e[0;37;40m%} %{\e[0;31;40m%}[${MODE_INDICATOR_PROMPT}]%{\e[0;37;40m%}' # prompt with mode inidcator
 RPROMPT=$'%{\e[0;33;40m%}$(short_path)%{\e[0;37;40m%} %{\e[0;31;40m%}$hostprompt%{\e[0;37;40m%}'
-#  text-style--^  ^--text-color
-
-# source =env_parallel.zsh
 
 catch_signal_usr1() {
   trap catch_signal_usr1 USR1
@@ -342,19 +341,13 @@ catch_signal_usr1() {
 }
 trap catch_signal_usr1 USR1
 
-[ $(hostname) == machine1 ] \
-    && zsh_synatx_hl=/usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh  # Gentoo
-[ $(hostname) == machine2 ] \
-    && zsh_synatx_hl=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # Arch
-[ -f "$zsh_synatx_hl" ] && source $zsh_synatx_hl
+# if [[ $1 == eval ]]
+# then
+#     "$@"
+# set --
+# fi
 
-try_source /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
-try_source /usr/share/doc/pkgfile/command-not-found.zsh
+# }}}
 
-p="$HOME/.local/share/nvim/site/autoload/plug.vim"
-[ -r $p ] || curl -vfLo $p --create-dirs  \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-# [[ $- == *i* ]] \
-#     && [ -r ~/doc/todo/now.todo ] \
-#     && echo TODO: && cat ~/doc/todo/now.todo
+# vim:foldmethod=marker
+# vim:foldlevel=0

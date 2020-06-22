@@ -1,7 +1,7 @@
 #!/bin/sh
 
 [ $(hostname) != machine2 ] && numlockx on
-setxkbmap be
+setxkbmap -option caps:swapescape be # TODO remap esc key to something usefull
 # Enable screensave:
 # setterm -blank 0 -powersave off -powerdown 0
 # xset -dpms s off
