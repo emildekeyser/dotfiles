@@ -45,6 +45,7 @@ set omnifunc=syntaxcomplete#Complete
 " set noshowmode 
 set clipboard=unnamedplus " use the clipboard (not the primary selection)
 let mapleader=" "
+let $ENV = expand("~/.config/zsh/aliases")
 
 "}}}
 " [UI] {{{
