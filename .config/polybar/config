@@ -1,11 +1,4 @@
-;=====================================================
-;
-;   To learn more about how to configure Polybar
-;   go to https://github.com/jaagr/polybar
-;
-;   The README contains alot of information
-;
-;=====================================================
+; {{{ xresources
 
 [xresources]
 font = ${xrdb:font:Fixedsys Excelsior:size=12}
@@ -29,6 +22,9 @@ color12 = ${xrdb:color12:#444}
 color13 = ${xrdb:color13:#444}
 color14 = ${xrdb:color14:#444}
 color15 = ${xrdb:color15:#444}
+
+; }}}
+; {{{ bar/simple-bar
 
 [bar/simple-bar]
 monitor = ${env:MONITOR:LVDS-1-1}
@@ -71,13 +67,16 @@ font-3 = siji:pixelsize=10;1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = sync-count pulseaudio usb-wlan eth date battery
+modules-right = sync-count pulseaudio usb-wlan wlan eth date battery
 ; modules-right = alsa usb-wlan eth date battery
 
 tray-position = right
 tray-padding = 2
 tray-transparent = true
 ;tray-background = #0063ff
+
+; }}}
+; {{{ module/i3
 
 [module/i3]
 type = internal/i3
@@ -120,6 +119,9 @@ label-urgent-padding =
 ; Separator in between workspaces
 ; label-separator = |
 
+; }}}
+; {{{ module/xwindow
+
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:60:...%
@@ -137,6 +139,9 @@ format-foreground = ${xresources.color2}
 ;
 ;label-song-maxlen = 25
 ;label-song-ellipsis = true
+
+; }}}
+; {{{ module/battery
 
 [module/battery]
 type = internal/battery
@@ -157,6 +162,9 @@ format-full-foreground = ${xresources.background}
 format-full-background = ${xresources.color6}
 format-full-padding = 1.5
 
+; }}}
+; {{{ module/sync-count
+
 [module/sync-count]
 type = custom/ipc
 hook-0 = synchronize --dry-run --itemize-changes | \grep -P '^<' | wc -l
@@ -164,6 +172,9 @@ initial = 0
 format-foreground = ${xresources.background}
 format-background = ${xresources.color6}
 format-padding = 1.5
+
+; }}}
+; {{{ module/usb-wlan
 
 [module/usb-wlan]
 type = custom/ipc
@@ -173,11 +184,15 @@ format-foreground = ${xresources.background}
 format-background = ${xresources.color6}
 format-padding = 1.5
 
+; }}}
+; {{{ module/wlan
+
 [module/wlan]
 type = internal/network
-interface = ${env:WLAN:wlp3s0}
+; interface = ${env:WLAN:wlp3s0}
+interface = wlan0
 interval = 3.0
-unknown-as-up = true
+; unknown-as-up = true
 
 ; format-connected = <ramp-signal> <label-connected>
 format-connected = <label-connected>
@@ -195,9 +210,13 @@ label-disconnected-foreground = ${self.label-connected-foreground}
 label-disconnected-background = ${self.label-connected-foreground}
 label-disconnected-padding = ${self.label-connected-foreground}
 
+; }}}
+; {{{ module/eth
+
 [module/eth]
 type = internal/network
-interface = ${env:ETH:enp2s0}
+; interface = ${env:ETH:enp2s0}
+interface = eth0
 interval = 3.0
 
 format-connected = <label-connected>
@@ -215,6 +234,9 @@ label-disconnected-foreground = ${self.label-connected-foreground}
 label-disconnected-background = ${self.label-connected-foreground}
 label-disconnected-padding = ${self.label-connected-foreground}
 
+; }}}
+; {{{ module/date
+
 [module/date]
 type = internal/date
 interval = 5
@@ -226,6 +248,9 @@ label = %time% %date%
 format-foreground = ${xresources.background}
 format-background = ${xresources.color6}
 format-padding = 1.5
+
+; }}}
+; {{{ module/pulseaudio
 
 [module/pulseaudio]
 type = internal/pulseaudio
@@ -259,6 +284,9 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${xresources.foreground-alt}
 
+; }}}
+; {{{ module/alsa
+
 [module/alsa]
 type = internal/alsa
 
@@ -278,14 +306,23 @@ label-muted-padding = 1.5
 ; content = ${env:WLAN}
 ; content-foreground = #00000000
 
+; }}}
+; {{{ settings
+
 [settings]
 screenchange-reload = true
 ; compositing-background = xor
 compositing-foreground = source
 compositing-border = over
 
+; }}}
+; {{{ global/wm
+
 [global/wm]
 margin-top = 0
 margin-bottom = 0
 
+; }}}
+
 ; vim:ft=dosini
+; vim:foldmethod=marker
