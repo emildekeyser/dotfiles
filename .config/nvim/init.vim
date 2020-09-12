@@ -12,7 +12,6 @@ call plug#begin('~/.config/nvim/plugins')
 
 Plug 'junegunn/vim-plug'
 Plug 'dylanaraps/wal.vim'
-" Plug 'aserebryakov/vim-todo-lists'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'chrisbra/csv.vim'
@@ -22,9 +21,15 @@ Plug 'junegunn/fzf.vim'
 " Plug 'sirver/ultisnips'
 Plug 'vim-airline/vim-airline'
 " Plug 'valloric/youcompleteme'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'thinca/vim-ref'
+" Plug 'tpope/vim-dadbod' " dbext
+
+Plug 'slashmili/alchemist.vim'
 
 call plug#end()
+
+let g:deoplete#enable_at_startup = 1
 
 "}}}
 " [General] {{{
@@ -146,10 +151,15 @@ nnoremap [ (
 nnoremap ] )
 
 "}}}
-" [External Programs]{{{
+" [Location list]{{{
 
 autocmd QuickFixCmdPost * cwindow
 set grepprg=grep\ -nr\ --exclude=tags
+
+"}}}
+" [Magic files]{{{
+
+autocmd BufWritePost ~/.config/polybar/config call system("polybar-msg cmd restart")
 
 "}}}
 " [FZF] {{{
@@ -179,8 +189,28 @@ set grepprg=grep\ -nr\ --exclude=tags
 " `Helptags`        | Help tags [1]
 " `Filetypes`       | File types
 
+function! FZFwithhistory()
+    let l:cwd = substitute(getcwd(), "/", "-", "g")
+    let l:cwd = expand("~") . "/.local/history/fzf/vim" . l:cwd
+    let l:tail = ""
+    if !filereadable(expand(l:cwd))
+        call writefile([], expand(l:cwd))
+    else
+        let l:tail = readfile(expand(l:cwd))
+        let l:tail = get(l:tail, -1, "")
+    endif
+
+    let l:cmd = ":FZF --history " . l:cwd
+    if l:tail != ""
+        let l:tail = substitute(l:tail, " ", "\\\\ ", "g")
+        let l:cmd = l:cmd . " --query " . l:tail . " ."
+    endif
+
+    call execute(l:cmd)
+endfunction
+
 let g:fzf_command_prefix = 'Fzf'
-nnoremap <leader>f :FZF<CR>
+nnoremap <leader>f :call FZFwithhistory()<CR>
 nnoremap <leader>b :FzfBuffers<CR>
 nnoremap <leader>L :FzfLines<CR>
 nnoremap <leader>t :FzfTags<CR>

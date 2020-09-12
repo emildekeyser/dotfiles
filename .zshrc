@@ -59,10 +59,11 @@ export FZF_DEFAULT_OPTS="--layout=reverse"
 export LESS='-R' # colors=always
 export CLICOLOR_FORCE=1 # colors=always with tree
 export PROGRESS_ARGS='--monitor-continuously --wait'
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 case $(hostname)  in
     machine1)
-        export ETH=enp0s25
+        export ETH=eth0
         export WLAN=''
         ;;
     machine2)

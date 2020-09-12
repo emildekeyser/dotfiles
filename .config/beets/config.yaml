@@ -1,4 +1,4 @@
-library: library.db
+library: ~/.local/share/beets/library.db
 directory: /data/music/library/artists/
 
 import:
@@ -15,7 +15,7 @@ import:
     quiet_fallback: skip
     none_rec_action: ask
     timid: no
-    log: log.txt
+    log: ~/.local/log/beets
     # autotag: no
     autotag: yes
     quiet: no
@@ -93,9 +93,9 @@ sort_item: artist+ album+ disc+ track+
 sort_case_insensitive: yes
 
 paths:
-    default: %lower{$artist}/$year.%lower{$album}/%lower{$track}.%lower{$title}
-    singleton: %lower{$artist}/$year.%lower{$album}/%lower{$track}.%lower{$title}
-    comp: %lower{$artist}/$year.%lower{$album}/%lower{$track}.%lower{$title}
+    default: %lower{$artist}/$year-%lower{$album}/%lower{$track}.%lower{$title}
+    singleton: %lower{$artist}/$year-%lower{$album}/%lower{$track}.%lower{$title}
+    comp: %lower{$artist}/$year-%lower{$album}/%lower{$track}.%lower{$title}
     # default: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
     # singleton: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
     # comp: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
@@ -103,7 +103,7 @@ paths:
     # comp: $albumartist/$album/$track $title
     # comp: $genre/$artist/$album%aunique{}/$track $title
 
-statefile: state.pickle
+statefile: ~/.local/share/beets/state.pickle
 
 musicbrainz:
     host: musicbrainz.org

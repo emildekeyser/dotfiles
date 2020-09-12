@@ -49,10 +49,10 @@ override-redirect = false
 ; line-color = #00000000
 ; line-color  = ${xrdb:color2:#444}
 
-border-left-size = 5
-border-right-size = 5
-border-top-size = 5
-border-bottom-size = 5
+border-left-size = 3
+border-right-size = 3
+border-top-size = 3
+border-bottom-size = 3
 border-color = ${xresources.background}
 
 padding-left = 1
@@ -67,7 +67,8 @@ font-3 = siji:pixelsize=10;1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = sync-count pulseaudio usb-wlan wlan eth date battery
+modules-right = pulseaudio usb-wlan wlan eth date battery
+; modules-right = sync-count pulseaudio usb-wlan wlan eth date battery
 ; modules-right = alsa usb-wlan eth date battery
 
 tray-position = right
@@ -259,7 +260,6 @@ type = internal/pulseaudio
 label-volume = %percentage%%
 label-volume-foreground = ${xresources.background}
 label-volume-background = ${xresources.color6}
-label-volume-underline = ${xresources.color6}
 label-volume-padding = 1.5
 
 label-muted = M
@@ -324,5 +324,4 @@ margin-bottom = 0
 
 ; }}}
 
-; vim:ft=dosini
-; vim:foldmethod=marker
+; vim:ft=dosini foldmethod=marker foldlevel=0
