@@ -2,7 +2,7 @@
 
 ! *.font: xft:agave:size=13
 ! *font: xft:agave:size=12
-*font: Fixedsys Excelsior:size=14
+*font: 12
 *gapsize: 0
 !! *gapsize: 30
 *gapstep: 5
@@ -39,3 +39,6 @@ URxvt.perl-ext-common: default,resize-font,font-size
 ! Font resize
 URxvt.keysym.C-KP_Subtract: resize-font:smaller
 URxvt.keysym.C-KP_Add: resize-font:bigger
+
+!! Polybar
+Polybar.font: Fixedsys Excelsior:size=14

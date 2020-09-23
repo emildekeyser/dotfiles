@@ -1,7 +1,7 @@
 ; {{{ xresources
 
 [xresources]
-font = ${xrdb:font:Fixedsys Excelsior:size=12}
+font = ${xrdb:Polybar.font:Fixedsys Excelsior:size=12}
 background = ${xrdb:background:#222}
 background-alt = ${xrdb:color1:#444}
 foreground = ${xrdb:foreground:#222}
