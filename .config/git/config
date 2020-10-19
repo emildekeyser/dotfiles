@@ -13,3 +13,5 @@
 [diff]
 	tool = neovim
 	guitool = neovim
+[pull]
+	rebase = false

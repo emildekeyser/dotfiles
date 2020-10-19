@@ -1,6 +1,8 @@
 import atexit
 import os
 import readline
+import importlib
+import sys
 
 histfile = os.path.expanduser("~") + "/.local/history/python"
 

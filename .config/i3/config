@@ -39,6 +39,7 @@ bindsym $mod+Shift+p $ex passmenu
 bindsym $mod+Shift+u $ex ~/project/scripts/usermenu.sh
 bindsym $mod+Print $ex maim -s ~/tmp/screenshot.png
 bindsym $mod+Escape $ex esc-menu
+bindsym $mod+Shift+b $ex bookmarks dmenu
 
 # Mouse clicks
 # bindsym Menu $ex xdotool click 1

@@ -15,7 +15,7 @@ fpath=(~/.config/zsh/functions $fpath)
 export TERMINAL=urxvt
 export EDITOR=nvim
 export VISUAL=$EDITOR
-export BROWSER=librewolf
+export BROWSER=brave
 export PAGER='less'
 export MANPAGER='nvim -R +":set ft=man" -'
 
@@ -91,7 +91,11 @@ key=(
 # }}}
 # {{{ functions and aliases
 
-source ~/.config/zsh/aliases
+awkp()
+{
+    i=${1:-1}
+    awk '{print $'$i'}'
+}
 
 f()
 {
@@ -99,9 +103,12 @@ f()
 	find -iname "*$search*"
 }
 
-try_source() {
+try_source()
+{
     [ -r "$1" ] && source "$1"
 }
+
+source ~/.config/zsh/aliases
 
 # # REPL System
 # export repl_state=echo
