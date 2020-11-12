@@ -1,5 +1,6 @@
 source $HOME/.zshrc
 
+monitor-home &
 [ $(hostname) == machine1 ] && [ -z $(pgrep mpd) ] && mpd &
 dad start
 

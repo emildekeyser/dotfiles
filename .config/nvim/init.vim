@@ -23,9 +23,9 @@ Plug 'vim-airline/vim-airline'
 " Plug 'valloric/youcompleteme'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'thinca/vim-ref'
+Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 " Plug 'tpope/vim-dadbod' " dbext
-
-Plug 'slashmili/alchemist.vim'
+" Plug 'slashmili/alchemist.vim'
 
 call plug#end()
 
@@ -216,7 +216,7 @@ nnoremap <leader>L :FzfLines<CR>
 nnoremap <leader>t :FzfTags<CR>
 nnoremap <leader>T :FzfBTags<CR>
 nnoremap <leader>M :FzfMarks<CR>
-nnoremap <leader>h :FzfHistory<CR>
+nnoremap <leader>H :FzfHistory<CR>
 nnoremap <leader>u :FzfSnippets<CR>
 nnoremap <leader>c :FzfCommands<CR>
 noremap <leader>m :FzfMaps<CR>
@@ -252,6 +252,26 @@ xmap <leader>a <Plug>(EasyAlign)
 nmap <leader>a <Plug>(EasyAlign)
 
 "}}}
+" [vim-commentary]{{{
+
+autocmd FileType c,cpp,cs,java set commentstring=//\ %s
+
+" }}}
+" [LanguageClient]{{{
+
+let g:LanguageClient_serverCommands = {
+    \ 'c': ['ccls', '--log-file=/home/user1/.local/log/ccls'],
+    \ 'cpp': ['ccls', '--log-file=/home/user1/.local/log/ccls']
+    \ }
+
+let g:LanguageClient_diagnosticsEnable = 0
+
+" let g:LanguageClient_loadSettings = 1 " Use an absolute configuration path if you want system-wide settings
+" let g:LanguageClient_settingsPath = '/home/YOUR_USERNAME/.config/nvim/settings.json'
+" https://github.com/autozimu/LanguageClient-neovim/issues/379 LSP snippet is not supported
+"let g:LanguageClient_hasSnippetSupport = 0
+
+" }}}
 
 " vim:foldmethod=marker
 " vim:foldlevel=0

@@ -1,6 +1,6 @@
 #show-read-feeds no
 auto-reload yes
-
+browser linkhandler
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
 bind-key j down
@@ -21,6 +21,8 @@ bind-key N prev-unread
 bind-key D pb-download
 bind-key U show-urls
 bind-key x pb-delete
+bind-key O open-in-browser
+bind-key o open-in-browser-and-mark-read
 
 color listnormal cyan default
 color listfocus black yellow standout bold
@@ -29,9 +31,7 @@ color listfocus_unread yellow default bold
 color info red black bold
 color article cyan default
 
-browser linkhandler
-macro , open-in-browser
-macro $ set browser "firefox"; open-in-browser ; set browser linkhandler
+macro $ set browser "brave"; open-in-browser ; set browser linkhandler
 # macro t set browser "tsp youtube-dl --add-metadata -ic"; open-in-browser ; set browser linkhandler
 # macro a set browser "tsp youtube-dl --add-metadata -xic -f bestaudio/best"; open-in-browser ; set browser linkhandler
 # macro v set browser "setsid nohup mpv"; open-in-browser ; set browser linkhandler

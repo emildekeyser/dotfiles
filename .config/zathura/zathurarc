@@ -1,3 +1,7 @@
 map <Space> navigate next
 map <S-Space> navigate previous
 set selection-clipboard clipboard
+set window-title-home-tilde true
+set statusbar-basename true
+
+include ../../.cache/wal/colors-zathura

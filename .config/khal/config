@@ -17,4 +17,8 @@ longdatetimeformat = %d-%b-%Y %H:%M
 default_calendar = user1
 
 [view]
-event_format = {calendar-color}{cancelled}{start}-{end} {title}{repeat-symbol}{description-separator}{location}-{description}{reset}
+agenda_event_format = {calendar-color}{cancelled}{start-end-time-style}{title}{repeat-symbol}{description-separator}{location}{description-separator}{description}{reset}
+
+[keybindings] 
+export = E
+external_edit = e
