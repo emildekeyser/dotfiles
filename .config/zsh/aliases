@@ -1,0 +1,97 @@
+# needed to make aliases available in non interactive shells:
+setopt aliases
+
+# Default flags (in interactive shell)
+alias nl="nl --number-separator='. ' --number-width=1"
+alias grep='grep -iP --color=auto'
+alias diff='diff --color=auto'
+alias ls='ls --color=auto'
+alias mpv='mpv --audio-display=no'
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffplay='ffplay -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
+alias emerge='sudo emerge --ask'
+alias watch='watch --color --interval=0.5'
+alias cp='cp -rv'
+alias curl='curl --progress-bar'
+alias df='df -hT'
+alias du='du -sh'
+alias irssi='irssi --config=~/.config/irssi/config --home=$XDG_DATA_HOME/irssi'
+alias sqlite3='sqlite3 -init ~/.config/sqliterc'
+alias units='units --history ~/.local/history/units'
+alias abook='abook --config $XDG_CONFIG_HOME/abookrc --datafile $XDG_DATA_HOME/abook-addressbook'
+alias iex='iex --dot-iex $HOME/.config/iex.exs'
+alias ip='ip -color'
+alias svn='svn --config-dir $XDG_CONFIG_HOME/subversion'
+alias trans='trans -I'
+
+# Sinks
+alias c='xclip -filter -rmlastnl -selection "clipboard"'
+alias z='read input ; print -z "$input"'
+alias d='read input ; cd "$input"'
+# alias ve='read input ; $EDITOR "$input"' ???
+alias ve='xargs $EDITOR'
+
+# Shortcuts
+alias y=tree
+alias v=$EDITOR
+alias l='ls -CF1 --group-directories-first'
+alias ll='ls -lhF --group-directories-first'
+alias la='l -A'
+alias lla='ll -A'
+alias u='v ~/ucll/planning.md'
+alias t='v ~/project/me/todo/now.md'
+alias T='cd ~/project/me/todo; v -c "call FZFwithhistory()"; cd -'
+alias tg='telegram-cli -NfW'
+alias py=python
+alias md='mkdir -p'
+alias xo='setsid xdg-open'
+alias hl='highlight --out-format=xterm256'
+alias reboot='sudo reboot'
+alias poweroff='sudo poweroff'
+alias h='tac $HISTFILE | fzf --history=$HOME/.local/history/fzf/h --query="$(tail -1 $HOME/.local/history/fzf/h)" --tiebreak=index | z'
+alias C='cdr -l | fzf | awkp | read i; cdr $i'
+alias e=echo
+alias p=yay
+
+# Edit things in vim shortcuts
+alias g='cd ~/.config; v -c "call FZFwithhistory()"; cd -'
+alias s='cd ~/project/scripts; v -c "call FZFwithhistory()"; cd -'
+alias pls='cd ~/music/library/pls; v -c "call FZFwithhistory()"; cd -'
+
+# menu's
+alias m='man -k . | fzf | awkp 1 | xargs man'
+alias P='echo | fzf --phony --bind "change:reload:pSs {q}" | awkp | xargs -o yay -S'
+alias PR='yay -Qq | fzf --multi | xargs -o yay -Rns'
+alias pqlv='yay -Qq | fzf | xargs yay -Ql | awkp 2 | fzf --sync | ve'
+
+# Actual aliases
+alias cut-space="cut -d' '"
+alias cut-semicolon="cut -d';'"
+alias cut-colon="cut -d':'"
+alias cut-comma="cut -d','"
+alias cut-tab="cut -d\t"
+[ -x /usr/bin/trash-put ] && alias rm='trash-put'
+alias keycodes='xmodmap -pke'
+alias update-mirrors='sudo reflector --verbose --protocol http --latest 200 --sort rate --save /etc/pacman.d/mirrorlist'
+alias edit-sleep='sudo -e /etc/systemd/sleep.conf'
+alias random-string='tr -dc [:alnum:] < /dev/urandom | head -c50'
+# Parameter needs to end in "
+alias add-email-address='abook --add-email-quiet <<< "From '
+alias email-address-archive='fzf < ~/.local/all-email-addresses.txt | c'
+alias pac-new-save-files='find /etc -regextype posix-extended -regex ".+\.pac(new|save)" 2> /dev/null'
+alias beet-lastadded='beet list added:"$(beet list -f \$added | head -1)"'
+
+alias confgit='git --work-tree=$HOME --git-dir=$HOME/project/dotfiles/dotfiles-public'
+alias confgit-private='git --work-tree=$HOME --git-dir=$HOME/project/dotfiles/dotfiles-private'
+alias confgit-artix-etc='git --work-tree=/etc --git-dir=$HOME/project/dotfiles/etc-artix'
+
+# Junkyard
+# alias android='jmtpfs /mnt/mtp ; cd /mnt/mtp'
+# alias iex='rlwrap -afoo iex'
+# alias eupdate='sudo emaint sync -a && sudo layman -S'
+# alias eupgrade='emerge --update --deep --newuse --keep-going @world'
+# alias esearch='\emerge --searchdesc'
+# alias etgit-arch='git --work-tree=/etc --git-dir=$HOME/project/dotfiles/etc-arch'
+
+# vim:ft=zsh
