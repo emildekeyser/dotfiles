@@ -14,6 +14,9 @@ set_from_resource $border_indicator i3wm.color5 #f0f0f0
 set_from_resource $font i3wm.font pango:DejaVu Sans Mono
 set_from_resource $fontsize i3wm.fontsize 12
 
+set_from_resource $browser env.browser qutebrowser
+set_from_resource $terminal env.terminal st
+
 font $font $fontsize
 # class                 border  backgr. text indicator child_border
 client.focused          $border     $border     $bg  $border_indicator       $border
@@ -30,16 +33,16 @@ floating_modifier Mod4
 # }}}
 # Program shortcuts {{{
 
-bindsym $mod+Return $ex urxvt
+bindsym $mod+Return $ex $terminal
 bindsym $mod+Shift+Return $ex ~/project/scripts/terminal-here.sh
 bindsym $mod+BackSpace $ex application-launcher
-bindsym $mod+i $ex brave-bin || brave
+bindsym $mod+i $ex $browser
 bindsym $mod+c $ex ~/project/scripts/default-layout.sh
 bindsym $mod+Shift+p $ex passmenu
 bindsym $mod+Shift+u $ex ~/project/scripts/usermenu.sh
 bindsym $mod+Print $ex maim -s ~/tmp/screenshot.png
 bindsym $mod+Escape $ex esc-menu
-bindsym $mod+Shift+b $ex bookmarks dmenu
+bindsym $mod+space $ex bookmarks
 
 # Mouse clicks
 # bindsym Menu $ex xdotool click 1
@@ -106,9 +109,12 @@ bindsym $mod+ccedilla workspace 9
 bindsym $mod+agrave workspace 10
 
 bindsym $mod+F12 workspace todo
-bindsym $mod+F11 workspace msg
-bindsym $mod+F10 workspace mail
-bindsym $mod+F9 workspace cal
+bindsym $mod+F11 workspace cal
+bindsym $mod+F10 workspace msg
+
+bindsym $mod+Shift+F12 move container to workspace todo
+bindsym $mod+Shift+F11 move container to workspace cal
+bindsym $mod+Shift+F10 move container to workspace msg
 
 bindsym $mod+Shift+ampersand move container to workspace 1
 bindsym $mod+Shift+eacute move container to workspace 2
@@ -120,11 +126,6 @@ bindsym $mod+Shift+egrave move container to workspace 7
 bindsym $mod+Shift+exclam move container to workspace 8
 bindsym $mod+Shift+ccedilla move container to workspace 9
 bindsym $mod+Shift+agrave move container to workspace 10
-
-bindsym $mod+Shift+F12 move container to workspace todo
-bindsym $mod+Shift+F11 move container to workspace msg
-bindsym $mod+Shift+F10 move container to workspace mail
-bindsym $mod+Shift+F9  move container to workspace cal
 
 bindsym $mod+Prior move workspace to output left
 bindsym $mod+Next move workspace to output right
@@ -190,7 +191,10 @@ mode "gaps"
 }
 bindsym $mod+g mode "gaps"
 # }}}
-# Floats{{{
+# Floaters{{{
+
+for_window [class="floater"] floating enable
+for_window [title="floater"] floating enable
 
 for_window [class="orange"] floating enable
 for_window [class="Orange Canvas"] floating enable
@@ -198,8 +202,6 @@ for_window [class="Thunderbird" window_role="messageWindow"] floating enable
 for_window [class="Thunderbird" window_role="Msgcompose"] floating enable
 for_window [class="PacketTracer7"] floating enable
 for_window [class="PacketTracer7" title="Cisco Packet Tracer"] floating disable
-for_window [class="floating-terminal"] floating enable
-for_window [title="floating-terminal"] floating enable
 for_window [title="Android Emulator"] floating enable
 # for_window [class="mpv"] floating enable
 # }}}
@@ -219,9 +221,11 @@ workspace msg output DP-3
 # }}}
 # {{{ Plugins
 
-$ex python ~/.config/i3/swallow.py
+# $ex python ~/.config/i3/swallow.py
 
 # }}}
+
+no_focus [class="qutebrowser"]
 
 # vim:foldmethod=marker
 # vim:foldlevel=0

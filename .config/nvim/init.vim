@@ -72,6 +72,7 @@ set nowrap
 " [Folds] {{{
 
 set foldlevelstart=9999   " open folds by default
+set foldlevel=9999   " open folds by default
 set foldmethod=indent   " fold based on indent level
 " set foldenable          " enable folding
 " set foldnestmax=2      " 10 nested fold max
@@ -124,7 +125,6 @@ autocmd OptionSet spelllang set spell
 
 nnoremap Y y$
 " TODO make this a repeatable command
-nnoremap ; j.
 nnoremap <C-d> 5j
 vnoremap <C-d> 5j
 nnoremap <C-u> 5k
@@ -133,7 +133,8 @@ vnoremap <C-u> 5k
 " nnoremap j gj       
 " nnoremap k gk
 
-nnoremap <leader>g :silent grep  .<left><left>
+nnoremap <leader>g :silent grep 
+" nnoremap <leader>g :silent grep  .<left><left>
 nnoremap <leader><CR> :make<CR>
 nnoremap <leader><TAB> :b #<CR>
 nnoremap <leader>d :bdelete<CR>
@@ -153,8 +154,9 @@ nnoremap ] )
 "}}}
 " [Location list]{{{
 
+" retarded
+set grepprg=codegrep
 autocmd QuickFixCmdPost * cwindow
-set grepprg=grep\ -nr\ --exclude=tags
 
 "}}}
 " [Magic files]{{{
@@ -255,6 +257,7 @@ nmap <leader>a <Plug>(EasyAlign)
 " [vim-commentary]{{{
 
 autocmd FileType c,cpp,cs,java set commentstring=//\ %s
+autocmd FileType sql set commentstring=--\ %s
 
 " }}}
 " [LanguageClient]{{{

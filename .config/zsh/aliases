@@ -30,7 +30,7 @@ alias c='xclip -filter -rmlastnl -selection "clipboard"'
 alias z='read input ; print -z "$input"'
 alias d='read input ; cd "$input"'
 # alias ve='read input ; $EDITOR "$input"' ???
-alias ve='xargs $EDITOR'
+alias ve='xargs -r $EDITOR'
 
 # Shortcuts
 alias y=tree
@@ -53,6 +53,7 @@ alias h='tac $HISTFILE | fzf --history=$HOME/.local/history/fzf/h --query="$(tai
 alias C='cdr -l | fzf | awkp | read i; cdr $i'
 alias e=echo
 alias p=yay
+alias go-list-go-doc='go list all | fzf --sync | xargs -r gofulldoc | v --cmd "set buftype=nofile"'
 
 # Edit things in vim shortcuts
 alias g='cd ~/.config; v -c "call FZFwithhistory()"; cd -'

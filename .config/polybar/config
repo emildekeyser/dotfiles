@@ -31,8 +31,8 @@ monitor = ${env:MONITOR:LVDS-1-1}
 # width = 94%
 width = 100%
 height = 24
-# offset-x = 3%
-# offset-y = 2%
+; offset-x = 2.5%
+; offset-y = 2.5%
 ; radius = 6.0
 fixed-center = true
 enable-ipc = true
@@ -42,8 +42,8 @@ background = ${xresources.background}
 foreground = ${xresources.foreground}
 ; dim-value = 0
 
-wm-restack = i3
-override-redirect = false
+; wm-restack = i3
+; override-redirect = false
 
 ; line-size = 6
 ; line-color = #00000000
@@ -65,8 +65,8 @@ font-1 = Fixedsys Excelsior:size=12
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 font-3 = siji:pixelsize=10;1
 
-modules-left = i3
-modules-center = xwindow
+modules-left = i3 xwindow
+; modules-center = 
 modules-right = pulseaudio usb-wlan wlan eth date battery
 ; modules-right = sync-count pulseaudio usb-wlan wlan eth date battery
 ; modules-right = alsa usb-wlan eth date battery
@@ -75,6 +75,55 @@ tray-position = right
 tray-padding = 2
 tray-transparent = true
 ;tray-background = #0063ff
+
+; }}}
+; {{{ separate bars
+
+[bar/left-bar]
+monitor = ${env:MONITOR:LVDS-1-1}
+width = 80%
+height = 24
+; fixed-center = true
+enable-ipc = true
+background = ${xresources.background}
+foreground = ${xresources.foreground}
+border-left-size = 3
+border-right-size = 3
+border-top-size = 3
+border-bottom-size = 3
+border-color = ${xresources.background}
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+font-0 = ${xresources.font}
+font-1 = Fixedsys Excelsior:size=12
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = siji:pixelsize=10;1
+modules-left = i3 xwindow
+
+[bar/volume-bar]
+monitor = ${env:MONITOR:LVDS-1-1}
+width = 80%
+height = 24
+; fixed-center = true
+enable-ipc = true
+background = ${xresources.background}
+foreground = ${xresources.foreground}
+border-left-size = 3
+border-right-size = 3
+border-top-size = 3
+border-bottom-size = 3
+border-color = ${xresources.background}
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+font-0 = ${xresources.font}
+font-1 = Fixedsys Excelsior:size=12
+font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-3 = siji:pixelsize=10;1
+; modules-center = pulseaudio
 
 ; }}}
 ; {{{ module/i3
@@ -125,7 +174,8 @@ label-urgent-padding =
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:60:...%
+; label = %title:0:60:...%
+label = %title%
 format-foreground = ${xresources.color2}
 
 ;[module/mpd]

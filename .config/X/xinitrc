@@ -12,7 +12,9 @@ xsetroot -solid black
 
 if [ $(hostname) == machine1 ]
 then
-    $HOME/.config/arandr-layout.sh
+    #TODO: system with b64 names of hostname+xrandrlistout+ipaddr
+    xrandr --output DVI-D-1 --left-of DP-1
+    # $HOME/.config/arandr-layout.sh
     # $HOME/.config/arandr-layout-scaled.sh
     # xrandr --output HDMI-1 --scale 1.25x1.25
     bar

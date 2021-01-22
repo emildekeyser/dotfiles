@@ -83,7 +83,7 @@ ui:
         action_default: turquoise
         action: blue
 
-format_item: $artist - $album - $title
+format_item: $genre = $artist = $year - $album = $track - $title
 format_album: $albumartist - $album
 time_format: '%Y-%m-%d %H:%M:%S'
 format_raw_length: no
@@ -93,9 +93,9 @@ sort_item: artist+ album+ disc+ track+
 sort_case_insensitive: yes
 
 paths:
-    default: %lower{$artist}/$year-%lower{$album}/%lower{$track}.%lower{$title}
-    singleton: %lower{$artist}/$year-%lower{$album}/%lower{$track}.%lower{$title}
-    comp: %lower{$artist}/$year-%lower{$album}/%lower{$track}.%lower{$title}
+    default: %lower{$artist}/$year-%lower{$album}/%lower{$track}-%lower{$title}
+    singleton: %lower{$artist}/$year-%lower{$album}/%lower{$track}-%lower{$title}
+    comp: %lower{$artist}/$year-%lower{$album}/%lower{$track}-%lower{$title}
     # default: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
     # singleton: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}
     # comp: %lower{$artist}/%lower{$album}/%lower{$track} %lower{$title}

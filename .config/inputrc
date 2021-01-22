@@ -9,3 +9,18 @@ set colored-completion-prefix On
 set colored-stats On
 set completion-display-width 0
 set enable-keypad On
+
+set show-mode-in-prompt on
+
+# CSI Ps SP q
+#   Set cursor style (DECSCUSR), VT520.
+#     Ps = 0  -> blinking block.
+#     Ps = 1  -> blinking block (default).
+#     Ps = 2  -> steady block.
+#     Ps = 3  -> blinking underline.
+#     Ps = 4  -> steady underline.
+#     Ps = 5  -> blinking bar (xterm).
+#     Ps = 6  -> steady bar (xterm).
+
+set vi-cmd-mode-string "\1\e[2 q\2"
+set vi-ins-mode-string "\1\e[5 q\2"
