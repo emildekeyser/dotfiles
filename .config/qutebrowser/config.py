@@ -484,8 +484,7 @@ c.auto_save.session = False
 ## `colors.webpage.darkmode.threshold.background` to 205.  - "With
 ## selective inversion of everything": Combines the two variants   above.
 ## Type: Bool
-# c.colors.webpage.darkmode.enabled = False
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 
 ## Render all colors as grayscale. This only has an effect when
 ## `colors.webpage.darkmode.algorithm` is set to `lightness-hsl` or
@@ -509,7 +508,7 @@ c.colors.webpage.darkmode.enabled = True
 ##   - always: Apply dark mode filter to all images.
 ##   - never: Never apply dark mode filter to any images.
 ##   - smart: Apply dark mode based on image content.
-# c.colors.webpage.darkmode.policy.images = 'smart'
+c.colors.webpage.darkmode.policy.images = 'never'
 
 ## Which pages to apply dark mode to.
 ## Type: String
@@ -524,7 +523,7 @@ c.colors.webpage.darkmode.enabled = True
 ## 256 to never invert the color or to 0 to always invert it. Note: This
 ## behavior is the opposite of `colors.webpage.darkmode.threshold.text`!
 ## Type: Int
-# c.colors.webpage.darkmode.threshold.background = 0
+c.colors.webpage.darkmode.threshold.background = 0
 
 ## Threshold for inverting text with dark mode. Text colors with
 ## brightness below this threshold will be inverted, and above it will be

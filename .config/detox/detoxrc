@@ -1,0 +1,18 @@
+sequence default {
+	utf_8;
+    safe {
+        filename "/home/user1/.config/detox/customsafe.tbl";
+    };
+	wipeup;
+	lower;
+};
+
+sequence inline {
+	utf_8;
+    safe {
+        filename "/home/user1/.config/detox/customsafe-leaveslash.tbl";
+    };
+	wipeup;
+	lower;
+};
+

@@ -2,6 +2,8 @@
 setopt aliases
 
 # Default flags (in interactive shell)
+alias detox='detox -f ~/.config/detox/detoxrc'
+alias inline-detox='inline-detox -f ~/.config/detox/detoxrc -s inline'
 alias nl="nl --number-separator='. ' --number-width=1"
 alias grep='grep -iP --color=auto'
 alias diff='diff --color=auto'

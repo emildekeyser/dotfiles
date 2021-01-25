@@ -2,6 +2,7 @@
 
 [ $(hostname) != machine2 ] && numlockx on
 setxkbmap -option caps:swapescape be # TODO remap esc key to something usefull
+unclutter &
 
 # screen always on:
 # setterm -blank 0 -powersave off -powerdown 0

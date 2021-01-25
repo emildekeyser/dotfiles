@@ -46,4 +46,4 @@ Polybar.font: Fixedsys Excelsior:size=14
 !! Env
 !! TODO load dynamically
 env.browser: qutebrowser
-env.terminal: urxvt
+env.terminal: st

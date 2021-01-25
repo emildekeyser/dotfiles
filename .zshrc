@@ -12,7 +12,7 @@ export PATH="$HOME/.local/bin:$PATH"
 fpath=(~/.config/zsh/functions $fpath)
 
 # Programs
-export TERMINAL=urxvt
+export TERMINAL=st
 export EDITOR=nvim
 export VISUAL=$EDITOR
 export BROWSER=qutebrowser
@@ -138,6 +138,25 @@ f()
 try_source()
 {
     [ -r "$1" ] && source "$1"
+}
+
+pqi-oneline() {
+    # I could not find an easy way with less duplicated lines
+    if [ -z "$@" ]
+    then
+        yay -Qie \
+            | grep -P '^Name|^Description|^Required' \
+            | seds 'Name *: ' '' \
+            | seds 'Description *: ' ' = ' \
+            | paste - - - \
+            | tr -s '\t' ' '
+    else
+        yay -Qi $@ | grep -P '^Name|^Description|^Required' \
+            | seds 'Name *: ' '' \
+            | seds 'Description *: ' ' = ' \
+            | paste - - - \
+            | tr -s '\t' ' '
+    fi
 }
 
 source ~/.config/zsh/aliases
