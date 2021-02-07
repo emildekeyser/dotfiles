@@ -8,7 +8,7 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.config/nvim/plugins')
+call plug#begin('~/.cache/nvim-plugins')
 
 Plug 'junegunn/vim-plug'
 Plug 'dylanaraps/wal.vim'
@@ -162,6 +162,7 @@ autocmd QuickFixCmdPost * cwindow
 " [Magic files]{{{
 
 autocmd BufWritePost ~/.config/polybar/config call system("polybar-msg cmd restart")
+autocmd BufWritePost ~/.config/crontab call system("fcrontab ~/.config/crontab")
 
 "}}}
 " [FZF] {{{

@@ -1,8 +1,9 @@
 #!/bin/sh
 
-[ $(hostname) != machine2 ] && numlockx on
-setxkbmap -option caps:swapescape be # TODO remap esc key to something usefull
+[ $HOST != machine2 ] && numlockx on
+setxkbmap -option caps:swapescape be # TODO remap esc key to something usefull + put this in xkb.conf
 unclutter &
+tail -n0 -F $HOME/.local/log/masterlog | xargs -IX notify-send X &
 
 # screen always on:
 # setterm -blank 0 -powersave off -powerdown 0
@@ -11,7 +12,7 @@ unclutter &
 xrdb -merge $HOME/.config/X/Xresources
 xsetroot -solid black
 
-if [ $(hostname) == machine1 ]
+if [ $HOST == machine1 ]
 then
     #TODO: system with b64 names of hostname+xrandrlistout+ipaddr
     xrandr --output DVI-D-1 --left-of DP-1

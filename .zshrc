@@ -39,7 +39,7 @@ export PYTHONSTARTUP=$XDG_CONFIG_HOME/pythonstartup.py
 export XAUTHORITY=$XDG_CACHE_HOME/Xauthority
 export NOTMUCH_CONFIG=$XDG_CONFIG_HOME/notmuch-config
 export NMBGIT=$XDG_DATA_HOME/nmbug
-export WEECHAT_HOME=$XDG_CONFIG_HOME/weechat
+export WEECHAT_HOME=$XDG_DATA_HOME/weechat
 export MIX_HOME=$XDG_DATA_HOME/mix
 export CCACHE_CONFIGPATH=$XDG_CONFIG_HOME/ccache.config
 export CCACHE_DIR=$XDG_CACHE_HOME/ccache 
@@ -72,7 +72,7 @@ export CLICOLOR_FORCE=1 # colors=always with tree
 export PROGRESS_ARGS='--monitor-continuously --wait'
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-case $(hostname)  in
+case $HOST in
     machine1)
         export ETH=eth0
         export WLAN=''
@@ -276,7 +276,7 @@ short_path()
 {
 	pwd | sed -e "s:^$HOME:/~:" -e 's/\/\./\//' | grep -o '/.' | sed 's:^/~:~:' | tr -d '\n'
 }
-[[ "$SSH_CONNECTION" == "" ]] || hostprompt="[$(hostname)]"
+[[ "$SSH_CONNECTION" == "" ]] || hostprompt="[$HOST]"
 autoload -Uz promptinit
 setopt PROMPT_SUBST
 promptinit

@@ -12,7 +12,7 @@
 
 ## This is here so configs done via the GUI are still loaded.
 ## Remove it to not load settings done via the GUI.
-# config.load_autoconfig()
+config.load_autoconfig(False)
 config.source("interceptors.py")
 
 ## Aliases for commands. The keys of the given dictionary are the

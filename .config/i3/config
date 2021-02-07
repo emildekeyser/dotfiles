@@ -25,6 +25,8 @@ client.unfocused        $fg     $bg     $fg  $bg       $fg
 client.urgent           $fg     $bg     $fg  $bg       $fg
 client.placeholder      $fg $bg     $fg  $bg       $fg 
 default_border pixel 2
+# TODO
+# for_window [con_id="__focused__ "] border pixel 5
 focus_on_window_activation focus
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -176,7 +178,6 @@ bindsym $mod+ugrave $ex ~/project/scripts/bar.sh toggle
 # Gaps{{{
 
 set_from_resource $gapsize i3wm.gapsize 30
-# for_window [class="^.*"] border pixel 2
 gaps inner $gapsize
 # gaps outer 30
 # bindsym $mod+g gaps inner all plus 5 

@@ -67,7 +67,7 @@ font-3 = siji:pixelsize=10;1
 
 modules-left = i3 xwindow
 ; modules-center = 
-modules-right = pulseaudio usb-wlan wlan eth date battery
+modules-right = pulseaudio network date battery
 ; modules-right = sync-count pulseaudio usb-wlan wlan eth date battery
 ; modules-right = alsa usb-wlan eth date battery
 
@@ -227,9 +227,9 @@ format-padding = 1.5
 ; }}}
 ; {{{ module/usb-wlan
 
-[module/usb-wlan]
+[module/network]
 type = custom/ipc
-hook-0 = wlan-status
+hook-0 = active-network-interfaces
 initial = 1
 format-foreground = ${xresources.background}
 format-background = ${xresources.color6}
