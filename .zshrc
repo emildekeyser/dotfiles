@@ -27,7 +27,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 export XINITRC=$XDG_CONFIG_HOME/X/xinitrc
 export ELINKS_CONFDIR=$XDG_CONFIG_HOME/elinks
-export MAILDIR=$XDG_DATA_HOME/mail
+export MAILDIR=$HOME/unique/mail
 export GOPATH=$XDG_CACHE_HOME/go:$HOME/project/go
 export npm_config_prefix=$HOME/.local/node_modules
 export HISTFILE=$HOME/.local/history/zsh_history
