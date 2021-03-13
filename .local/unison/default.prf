@@ -1,0 +1,38 @@
+auto = true
+logfile = /home/user1/.local/log/unison
+# merge = Name * -> diff3 -m CURRENT1 /dev/null CURRENT2 > NEW  ; $TERMINAL -e nvim NEW
+
+root = /home/user1/
+root = socket://machine2:10000//home/user1/
+
+path = tmp
+path = doc
+path = pic
+path = project
+# path = vid
+path = music
+
+path = .android
+path = .ssh
+path = .zprofile
+path = .zshenv
+path = .zshrc
+path = .trello-cli
+
+path = .config
+path = .local/share
+
+path = .local/templates
+path = .local/bookmarks
+path = .local/bin
+path = .local/history
+path = .local/zr
+path = .local/people
+path = .local/calendars
+path = .local/repo
+path = .local/unison/default.prf
+
+# ingore gpg sockets TODO
+ignore = Path .local/share/gnupg/S.*
+
+# vim: ft=cfg

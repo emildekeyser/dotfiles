@@ -1,0 +1,13 @@
+daemonize = true
+max_history = 100000
+history_file_path = '/home/user1/.local/clipcat/db'
+log_level = 'INFO'
+
+[monitor]
+load_current = true
+enable_clipboard = true
+enable_primary = false
+
+[grpc]
+host = '127.0.0.1'
+port = 45045
