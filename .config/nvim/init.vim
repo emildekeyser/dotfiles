@@ -26,6 +26,7 @@ Plug 'thinca/vim-ref'
 Plug 'autozimu/LanguageClient-neovim', { 'branch': 'next', 'do': 'bash install.sh' }
 " Plug 'tpope/vim-dadbod' " dbext
 " Plug 'slashmili/alchemist.vim'
+Plug 'Glench/Vim-Jinja2-Syntax'
 
 call plug#end()
 

@@ -31,7 +31,7 @@ export MAILDIR=$HOME/unique/mail
 export GOPATH=$XDG_CACHE_HOME/go:$HOME/project/go
 export npm_config_prefix=$HOME/.local/node_modules
 export HISTFILE=$HOME/.local/history/zsh_history
-export MPD_HOST=$XDG_DATA_HOME/mpd/socket
+export MPD_HOST=$HOME/.local/unique/mpd/socket
 export UNISON=$HOME/.local/unison
 export LESSHISTFILE=$HOME/.local/history/less
 export INPUTRC=$XDG_CONFIG_HOME/inputrc
@@ -174,32 +174,6 @@ source ~/.config/zsh/aliases
 # }
 
 # }}}
-# {{{ plugin options
-
-# Cursor config (vim-plugin)
-MODE_CURSOR_DEFAULT="blinking bar"
-MODE_CURSOR_VICMD="steady block"
-MODE_CURSOR_VIINS="blinking bar"
-MODE_CURSOR_SEARCH="steady underline"
-
-# }}}
-# {{{ rc
-
-eval $(dircolors)
-[[ -r ~/.cache/wal/sequences ]] && cat ~/.cache/wal/sequences
-try_source ~/.cache/wal/colors.sh
-try_source ~/.config/zsh/plugins/vi-increment.zsh
-try_source ~/.config/zsh/plugins/vi-mode.zsh
-try_source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh  # Gentoo
-try_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # Arch
-try_source /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
-try_source /usr/share/doc/pkgfile/command-not-found.zsh
-
-# [[ $- == *i* ]] \ # check if interactive
-#     && [ -r ~/doc/todo/now.todo ] \
-#     && echo : && cat ~/doc/todo/now.todo
-
-# }}}
 # {{{ options
 
 # Edit command line in $EDITOR.
@@ -271,7 +245,47 @@ setopt notify
 unsetopt nomatch
 setopt PRINT_EXIT_VALUE
 
-# Prompt
+catch_signal_usr1() {
+  trap catch_signal_usr1 USR1
+  rehash
+}
+trap catch_signal_usr1 USR1
+
+# if [[ $1 == eval ]]
+# then
+#     "$@"
+# set --
+# fi
+
+# }}}
+# {{{ plugins
+
+# Cursor config (vi-mode.zsh)
+MODE_CURSOR_DEFAULT="blinking bar"
+MODE_CURSOR_VICMD="steady block"
+MODE_CURSOR_VIINS="blinking bar"
+MODE_CURSOR_SEARCH="steady underline"
+
+eval $(dircolors)
+[[ -r ~/.cache/wal/sequences ]] && cat ~/.cache/wal/sequences
+try_source ~/.cache/wal/colors.sh
+try_source ~/.config/zsh/plugins/vi-increment.zsh
+try_source ~/.config/zsh/plugins/vi-mode.zsh
+try_source /usr/share/zsh/site-functions/zsh-syntax-highlighting.zsh  # Gentoo
+try_source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # Arch
+try_source /usr/share/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh
+try_source /usr/share/doc/pkgfile/command-not-found.zsh
+try_source ~/doc/clones/fzf-tab/fzf-tab.plugin.zsh
+
+zle -N vi-increment vi-crement
+zle -N vi-decrement vi-crement
+bindkey -M vicmd '^a' vi-increment
+bindkey -M visual '^a' vi-increment
+bindkey -M vicmd '^x' vi-decrement
+bindkey -M visual '^x' vi-decrement
+
+# }}}
+# {{{ Prompt
 short_path()
 {
 	pwd | sed -e "s:^$HOME:/~:" -e 's/\/\./\//' | grep -o '/.' | sed 's:^/~:~:' | tr -d '\n'
@@ -283,26 +297,6 @@ promptinit
 PROMPT=$'%{\e[0;31;40m%}ᛃ %{\e[0;37;40m%}'
 # RPROMPT=$'%{\e[0;33;40m%}$(short_path)%{\e[0;37;40m%} %{\e[0;31;40m%}[${MODE_INDICATOR_PROMPT}]%{\e[0;37;40m%}' # prompt with mode inidcator
 RPROMPT=$'%{\e[0;33;40m%}$(short_path)%{\e[0;37;40m%} %{\e[0;31;40m%}$hostprompt%{\e[0;37;40m%}'
-
-catch_signal_usr1() {
-  trap catch_signal_usr1 USR1
-  rehash
-}
-trap catch_signal_usr1 USR1
-
-zle -N vi-increment vi-crement
-zle -N vi-decrement vi-crement
-for m in vicmd visual; do
-	bindkey -M "$m" '^a' vi-increment
-	bindkey -M "$m" '^x' vi-decrement
-done
-
-# if [[ $1 == eval ]]
-# then
-#     "$@"
-# set --
-# fi
-
 # }}}
 
 # vim:foldmethod=marker

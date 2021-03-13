@@ -12,7 +12,6 @@ alias mpv='mpv --audio-display=no'
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffplay='ffplay -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
-alias emerge='sudo emerge --ask'
 alias watch='watch --color --interval=0.5'
 alias cp='cp -rv'
 alias mv='mv -v'
@@ -28,6 +27,7 @@ alias iex='iex --dot-iex $HOME/.config/iex.exs'
 alias ip='ip -color'
 alias svn='svn --config-dir $XDG_CONFIG_HOME/subversion'
 alias trans='trans -I'
+alias pgrep='pgrep --list-full'
 
 # Sinks
 alias c='xclip -filter -rmlastnl -selection "clipboard"'
@@ -35,6 +35,15 @@ alias z='read input ; print -z "$input"'
 alias d='read input ; cd "$input"'
 # alias ve='read input ; $EDITOR "$input"' ???
 alias ve='xargs -r $EDITOR'
+
+# Sudo
+alias reboot='sudo reboot'
+alias poweroff='sudo poweroff'
+alias sv='sudo sv'
+alias rsm='sudo rsm'
+alias pacman='sudo pacman'
+alias emerge='sudo emerge --ask'
+alias nmap='sudo nmap'
 
 # Shortcuts
 alias y=tree
@@ -51,8 +60,6 @@ alias py=python
 alias md='mkdir -p'
 alias xo='setsid xdg-open'
 alias hl='highlight --out-format=xterm256'
-alias reboot='sudo reboot'
-alias poweroff='sudo poweroff'
 alias h='tac $HISTFILE | fzf --history=$HOME/.local/history/fzf/h --query="$(tail -1 $HOME/.local/history/fzf/h)" --tiebreak=index | z'
 alias C='cdr -l | fzf | awkp | read i; cdr $i'
 alias e=echo
@@ -65,7 +72,7 @@ alias s='cd ~/project/scripts; v -c "call FZFwithhistory()"; cd -'
 alias pls='cd ~/music/library/pls; v -c "call FZFwithhistory()"; cd -'
 
 # menu's
-alias m='man -k . | fzf | awkp 1 | xargs man'
+
 alias P='echo | fzf --phony --bind "change:reload:pSs {q}" | awkp | xargs -o yay -S'
 alias PR='yay -Qq | fzf --multi | xargs -o yay -Rns'
 alias pqlv='yay -Qq | fzf | xargs yay -Ql | awkp 2 | fzf --sync | ve'
@@ -75,10 +82,9 @@ alias cut-space="cut -d' '"
 alias cut-semicolon="cut -d';'"
 alias cut-colon="cut -d':'"
 alias cut-comma="cut -d','"
-alias cut-tab="cut -d\t"
 [ -x /usr/bin/trash-put ] && alias rm='trash-put'
 alias keycodes='xmodmap -pke'
-alias update-mirrors='sudo reflector --verbose --protocol http --latest 200 --sort rate --save /etc/pacman.d/mirrorlist'
+# alias update-mirrors='sudo reflector --verbose --protocol http --latest 200 --sort rate --save /etc/pacman.d/mirrorlist'
 alias edit-sleep='sudo -e /etc/systemd/sleep.conf'
 alias random-string='tr -dc [:alnum:] < /dev/urandom | head -c50'
 # Parameter needs to end in "
@@ -86,6 +92,7 @@ alias add-email-address='abook --add-email-quiet <<< "From '
 alias email-address-archive='fzf < ~/.local/all-email-addresses.txt | c'
 alias pac-new-save-files='sudo find /etc -name *.pacnew -or -name *.pacsave'
 alias beet-lastadded='beet list added:"$(beet list -f \$added | head -1)"'
+alias remove-escapes='sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"'
 
 alias confgit-public='git --work-tree=$HOME --git-dir=$HOME/project/jera-operating-system/user1-conf-public'
 alias confgit-private='git --work-tree=$HOME --git-dir=$HOME/project/jera-operating-system/user1-conf-private'

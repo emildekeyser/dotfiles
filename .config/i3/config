@@ -16,21 +16,25 @@ set_from_resource $fontsize i3wm.fontsize 12
 
 set_from_resource $browser env.browser qutebrowser
 set_from_resource $terminal env.terminal st
+# }}}
+# {{{ Options
 
-font $font $fontsize
 # class                 border  backgr. text indicator child_border
 client.focused          $border     $border     $bg  $border_indicator       $border
 client.focused_inactive $fg     $bg     $fg  $border_indicator       $fg
 client.unfocused        $fg     $bg     $fg  $bg       $fg
 client.urgent           $fg     $bg     $fg  $bg       $fg
 client.placeholder      $fg $bg     $fg  $bg       $fg 
-default_border pixel 2
+
 # TODO
 # for_window [con_id="__focused__ "] border pixel 5
-focus_on_window_activation focus
 
-# Use Mouse+$mod to drag floating windows to their wanted position
+default_border pixel 2
+font $font $fontsize
+focus_on_window_activation focus
 floating_modifier Mod4
+focus_wrapping no
+no_focus [class="qutebrowser"]
 
 # }}}
 # Program shortcuts {{{
@@ -39,12 +43,12 @@ bindsym $mod+Return $ex $terminal
 bindsym $mod+Shift+Return $ex ~/project/scripts/terminal-here.sh
 bindsym $mod+BackSpace $ex application-launcher
 bindsym $mod+i $ex $browser
-bindsym $mod+c $ex ~/project/scripts/default-layout.sh
 bindsym $mod+Shift+p $ex passmenu
 bindsym $mod+Shift+u $ex ~/project/scripts/usermenu.sh
 bindsym $mod+Print $ex maim -s ~/tmp/screenshot.png
 bindsym $mod+Escape $ex esc-menu
 bindsym $mod+space $ex bookmarks
+bindsym $mod+c $ex clipcat-menu
 
 # Mouse clicks
 # bindsym Menu $ex xdotool click 1
@@ -74,7 +78,6 @@ bindsym $mod+Shift+less	     $ex mpc next
 bindsym $mod+less	         $ex mpc prev
 bindsym $mod+Shift+KP_Add    $ex $volume_up1
 bindsym $mod+Shift+KP_Subtract $ex $volume_down1
-
 
 # }}}
 # i3 wm shortcuts{{{
@@ -225,8 +228,6 @@ workspace msg output DP-3
 # $ex python ~/.config/i3/swallow.py
 
 # }}}
-
-no_focus [class="qutebrowser"]
 
 # vim:foldmethod=marker
 # vim:foldlevel=0

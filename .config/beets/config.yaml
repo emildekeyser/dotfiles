@@ -58,7 +58,7 @@ art_filename: cover
 max_filename_length: 0
 
 # plugins: [fetchart, edit, embedart]
-plugins: [fetchart, edit]
+plugins: [fetchart, edit, missing]
 pluginpath: []
 threaded: yes
 timeout: 5.0
@@ -83,7 +83,7 @@ ui:
         action_default: turquoise
         action: blue
 
-format_item: $genre = $artist = $year - $album = $track - $title
+format_item: $genre == $artist == $year - $album == $track - $title == $grouping
 format_album: $albumartist - $album
 time_format: '%Y-%m-%d %H:%M:%S'
 format_raw_length: no

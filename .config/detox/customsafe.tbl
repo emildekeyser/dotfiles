@@ -118,7 +118,8 @@ start
 # Other
 #
 
-0x2d		= # - => =
+#0x2d		= # - => =
 0x26		_and_	# &
 
+# vim:ft=conf
 end

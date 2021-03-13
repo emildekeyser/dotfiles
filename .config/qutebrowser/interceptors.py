@@ -21,7 +21,7 @@ REDIRECT_MAP = {
     "reddit.com": operator.methodcaller('setHost', 'teddit.net'),
     "youtube.com": operator.methodcaller('setHost', best_invidious),
     "instagram.com": operator.methodcaller('setHost', "bibliogram.art"),
-    "twitter.com": operator.methodcaller('setHost', "nitter.net"),
+    "twitter.com": operator.methodcaller('setHost', "nitter.42l.fr"),
     "en.wikipedia.org": _wiki_redir,
 } # type: typing.Dict[str, typing.Callable[..., typing.Optional[bool]]]
 
