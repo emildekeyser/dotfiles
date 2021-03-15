@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-[ $(hostname) != machine2 ] && numlockx on
+[[ $(hostname) != machine2 ]] && numlockx on
 setxkbmap -option caps:swapescape be # TODO remap esc key to something usefull + put this in xkb.conf
 unclutter &
 clipcatd
@@ -13,7 +13,7 @@ tail -n0 -F $HOME/.local/log/masterlog | xargs -IX notify-send X &
 xrdb -merge $HOME/.config/X/Xresources
 xsetroot -solid black
 
-if [ $(hostname) == machine1 ]
+if [[ $(hostname) == machine1 ]]
 then
     #TODO: system with b64 names of hostname+xrandrlistout+ipaddr
     xrandr --output DVI-D-1 --left-of DP-1
@@ -24,10 +24,6 @@ then
 else
     double-monitor
 fi
-
-# This if for dunst
-[[ -x $(which systemctl 2>/dev/null) ]] && \
-    systemctl --user import-environment DISPLAY
 
 theme -R
 

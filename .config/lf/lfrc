@@ -4,6 +4,14 @@ set scrolloff 5
 map x $$f
 map X !$f
 
+map <f-3> :set ratios 1:2:3
+map <f-4> :set preview!
+
+map <f-5> :set ratios 1
+map <f-6> :set ratios 1:1
+map <f-7> :set ratios 1:1:1
+map <f-8> :set ratios 1:1:1:1
+
 cmd delete ${{
     trash-put "$fx"
 }}
