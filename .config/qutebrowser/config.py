@@ -892,7 +892,7 @@ c.colors.webpage.darkmode.threshold.background = 0
 ##   - true
 ##   - false
 ##   - ask
-# c.content.notifications = 'ask'
+c.content.notifications = False
 
 ## Allow pdf.js to view PDF files in the browser. Note that the files can
 ## still be downloaded by clicking the download button in the pdf.js

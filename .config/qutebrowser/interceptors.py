@@ -1,5 +1,5 @@
 import operator, re, typing
-from urllib.parse import urljoin
+import urllib.parse
 from os.path import expanduser
 
 from qutebrowser.api import interceptor, message
@@ -8,20 +8,21 @@ from PyQt5.QtCore import QUrl
 def _wiki_redir(url: QUrl) -> bool:
     p = url.path()
     if p.startswith("/wiki/"):
-        url.setPath(urljoin("/info/", p.lstrip("/wiki/")))
+        url.setPath(urllib.parse.urljoin("/info/", p.lstrip("/wiki/")))
         url.setHost("infogalactic.com")
         return True
     return False
 
 with open(expanduser('~/.cache/best-instances/invidious.txt')) as f:
     best_invidious = f.readline().strip()
+    best_invidious = urllib.parse.urlparse(best_invidious).netloc
 
 # Any return value other than a literal 'False' means we redirected
 REDIRECT_MAP = {
     "reddit.com": operator.methodcaller('setHost', 'teddit.net'),
     "youtube.com": operator.methodcaller('setHost', best_invidious),
     "instagram.com": operator.methodcaller('setHost', "bibliogram.art"),
-    "twitter.com": operator.methodcaller('setHost', "nitter.42l.fr"),
+    "twitter.com": operator.methodcaller('setHost', "nitter.nixnet.services"),
     "en.wikipedia.org": _wiki_redir,
 } # type: typing.Dict[str, typing.Callable[..., typing.Optional[bool]]]
 

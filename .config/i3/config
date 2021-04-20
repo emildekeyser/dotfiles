@@ -40,21 +40,23 @@ no_focus [class="qutebrowser"]
 # Program shortcuts {{{
 
 bindsym $mod+Return $ex $terminal
-bindsym $mod+Shift+Return $ex ~/project/scripts/terminal-here.sh
+bindsym $mod+Shift+Return $ex terminal-here
 bindsym $mod+BackSpace $ex application-launcher
 bindsym $mod+i $ex $browser
 bindsym $mod+Shift+p $ex passmenu
-bindsym $mod+Shift+u $ex ~/project/scripts/usermenu.sh
+bindsym $mod+Shift+u $ex passmenu username
 bindsym $mod+Print $ex maim -s ~/tmp/screenshot.png
 bindsym $mod+Escape $ex esc-menu
 bindsym $mod+space $ex bookmarks
 bindsym $mod+c $ex clipcat-menu
+bindsym $mod+m $ex notmuch address id: | dmenu | xclip -rmlastnl -selection "clipboard"
 
 # Mouse clicks
 # bindsym Menu $ex xdotool click 1
 # bindsym Shift+Menu $ex xdotool click 3
 
 # Audio
+
 set $volume_up5 pulsemixer --change-volume 5
 set $volume_down5 pulsemixer --change-volume -5
 set $volume_up1 pulsemixer --change-volume 1
@@ -74,8 +76,11 @@ bindsym $mod+KP_Add          $ex $volume_up5
 bindsym $mod+KP_Subtract     $ex $volume_down5
 bindsym $mod+KP_Multiply     $ex $volume_mute
 bindsym $mod+KP_Divide 	     $ex mpc toggle
-bindsym $mod+Shift+less	     $ex mpc next
-bindsym $mod+less	         $ex mpc prev
+# This is not logical shit is not needed to be pressed
+bindsym $mod+Shift+greater	     $ex mpc next
+bindsym $mod+Shift+less	         $ex mpc prev
+bindsym XF86AudioNext       $ex mpc next
+bindsym XF86AudioPrev       $ex mpc prev
 bindsym $mod+Shift+KP_Add    $ex $volume_up1
 bindsym $mod+Shift+KP_Subtract $ex $volume_down1
 
@@ -102,16 +107,27 @@ bindsym $mod+Shift+a focus mode_toggle
 bindsym $mod+p focus parent
 bindsym $mod+d focus child
 
-bindsym $mod+ampersand workspace 1
-bindsym $mod+eacute workspace 2
-bindsym $mod+quotedbl workspace 3
-bindsym $mod+apostrophe workspace 4
-bindsym $mod+parenleft workspace 5
-bindsym $mod+section workspace 6
-bindsym $mod+egrave workspace 7
-bindsym $mod+exclam workspace 8
-bindsym $mod+ccedilla workspace 9
-bindsym $mod+agrave workspace 10
+# bindsym $mod+ampersand workspace 1
+# bindsym $mod+eacute workspace 2
+# bindsym $mod+quotedbl workspace 3
+# bindsym $mod+apostrophe workspace 4
+# bindsym $mod+parenleft workspace 5
+# bindsym $mod+section workspace 6
+# bindsym $mod+egrave workspace 7
+# bindsym $mod+exclam workspace 8
+# bindsym $mod+ccedilla workspace 9
+# bindsym $mod+agrave workspace 10
+
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
 
 bindsym $mod+F12 workspace todo
 bindsym $mod+F11 workspace cal
@@ -121,16 +137,16 @@ bindsym $mod+Shift+F12 move container to workspace todo
 bindsym $mod+Shift+F11 move container to workspace cal
 bindsym $mod+Shift+F10 move container to workspace msg
 
-bindsym $mod+Shift+ampersand move container to workspace 1
-bindsym $mod+Shift+eacute move container to workspace 2
-bindsym $mod+Shift+quotedbl move container to workspace 3
-bindsym $mod+Shift+apostrophe move container to workspace 4
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
 bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+section move container to workspace 6
-bindsym $mod+Shift+egrave move container to workspace 7
-bindsym $mod+Shift+exclam move container to workspace 8
-bindsym $mod+Shift+ccedilla move container to workspace 9
-bindsym $mod+Shift+agrave move container to workspace 10
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
 
 bindsym $mod+Prior move workspace to output left
 bindsym $mod+Next move workspace to output right
@@ -176,7 +192,7 @@ bindsym $mod+Shift+Control+l resize grow width 1 px or 1 ppt
 # bar {
 # 	i3bar_command ~/project/scripts/bar.sh
 # }
-bindsym $mod+ugrave $ex ~/project/scripts/bar.sh toggle
+bindsym $mod+backslash $ex bar toggle
 # }}}
 # Gaps{{{
 
@@ -187,8 +203,8 @@ gaps inner $gapsize
 # bindsym $mod+Shift+g gaps inner all set 0
 mode "gaps"
 {
-	bindsym KP_Add $ex "~/project/scripts/gaps.sh increase"
-	bindsym KP_Subtract $ex "~/project/scripts/gaps.sh decrease"
+	bindsym KP_Add $ex "gaps increase"
+	bindsym KP_Subtract $ex "gaps decrease"
 	bindsym KP_Multiply $ex "~/project/scripts/gaps.sh default"
 	bindsym KP_Divide $ex "~/project/scripts/gaps.sh zero"
     bindsym Escape mode "default"
@@ -218,9 +234,9 @@ for_window [title="Android Emulator"] floating enable
 #  3: +DVI-D-1 1680/494x1050/320+1280+0  DVI-D-1
 
 workspace 1 output DVI-D-1
-workspace 6 output DP-2
-workspace todo output HDMI-1
-workspace msg output DP-3
+workspace 5 output DP-1
+# workspace todo output HDMI-1
+# workspace msg output DP-3
 
 # }}}
 # {{{ Plugins

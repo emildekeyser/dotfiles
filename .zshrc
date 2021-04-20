@@ -63,6 +63,7 @@ export RANDFILE=$XDG_CACHE_HOME/rnd
 export GTK_RC_FILES=$XDG_CONFIG_HOME/gtk-1.0/gtkrc
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_DATA_HOME/java
+export BEETSDIR=$HOME/.local/share/beets
 
 # Options
 export DIANA_SECRET_TOKEN=386a2506-fcea-4c79-9206-8cd7e8c43cc7
@@ -71,18 +72,6 @@ export LESS='-R' # colors=always
 export CLICOLOR_FORCE=1 # colors=always with tree
 export PROGRESS_ARGS='--monitor-continuously --wait'
 export ERL_AFLAGS="-kernel shell_history enabled"
-
-case $HOST in
-    machine1)
-        export ETH=eth0
-        export WLAN=''
-        ;;
-    machine2)
-        export ETH=enp2s0
-        export WLAN=wlp0s18f2u1
-        export YTFORMAT='--ytdl-format=worst'
-        ;;
-esac
 
 typeset -A key
 key=(
@@ -244,12 +233,6 @@ setopt extendedglob
 setopt notify
 unsetopt nomatch
 setopt PRINT_EXIT_VALUE
-
-catch_signal_usr1() {
-  trap catch_signal_usr1 USR1
-  rehash
-}
-trap catch_signal_usr1 USR1
 
 # if [[ $1 == eval ]]
 # then

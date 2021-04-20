@@ -1,10 +1,10 @@
 #!/bin/bash
 
-[[ $(hostname) != machine2 ]] && numlockx on
-setxkbmap -option caps:swapescape be # TODO remap esc key to something usefull + put this in xkb.conf
-unclutter &
-clipcatd
 tail -n0 -F $HOME/.local/log/masterlog | xargs -IX notify-send X &
+[[ $(hostname) != machine2 ]] && numlockx on
+unclutter &
+clipcatd --no-daemon >> $HOME/.local/log/clipcat 2>&1 &
+crond -n -f $HOME/.config/crontab >> $HOME/.local/log/cron 2>&1 &
 
 # screen always on:
 # setterm -blank 0 -powersave off -powerdown 0

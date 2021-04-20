@@ -5,7 +5,7 @@ set runtimepath^=/usr/share/vim/vimfiles"
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  " autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.cache/nvim-plugins')
@@ -163,7 +163,7 @@ autocmd QuickFixCmdPost * cwindow
 " [Magic files]{{{
 
 autocmd BufWritePost ~/.config/polybar/config call system("polybar-msg cmd restart")
-autocmd BufWritePost ~/.config/crontab call system("fcrontab ~/.config/crontab")
+autocmd BufWritePost ~/.config/i3/config call system("i3 reload")
 
 "}}}
 " [FZF] {{{

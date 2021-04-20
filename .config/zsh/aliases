@@ -25,9 +25,10 @@ alias units='units --history ~/.local/history/units'
 alias abook='abook --config $XDG_CONFIG_HOME/abookrc --datafile $XDG_DATA_HOME/abook-addressbook'
 alias iex='iex --dot-iex $HOME/.config/iex.exs'
 alias ip='ip -color'
-alias svn='svn --config-dir $XDG_CONFIG_HOME/subversion'
+alias svn='svn --config-dir $XDG_DATA_HOME/subversion'
 alias trans='trans -I'
 alias pgrep='pgrep --list-full'
+alias rsync='rsync -vvar'
 
 # Sinks
 alias c='xclip -filter -rmlastnl -selection "clipboard"'
@@ -52,8 +53,8 @@ alias l='ls -CF1 --group-directories-first'
 alias ll='ls -lhF --group-directories-first'
 alias la='l -A'
 alias lla='ll -A'
-alias u='v ~/ucll/stage/papierwerk/TODO.md'
-alias t='v ~/project/me/notes/now.md'
+alias u='cd ~/ucll/stage; v papierwerk/TODO.md; cd -'
+alias t='cd ~/project/me/notes; v now.md; cd -'
 alias n='cd ~/project/me/notes; v -c "call FZFwithhistory()"; cd -'
 alias tg='telegram-cli -NfW'
 alias py=python
@@ -67,8 +68,8 @@ alias p=yay
 alias go-list-go-doc='go list all | fzf --sync | xargs -r gofulldoc | v --cmd "set buftype=nofile"'
 
 # Edit things in vim shortcuts
-alias g='cd ~/.config; v -c "call FZFwithhistory()"; cd -'
-alias s='cd ~/project/scripts; v -c "call FZFwithhistory()"; cd -'
+alias g='cd ~/.config; FZF_DEFAULT_COMMAND=find-no-soy v -c "call FZFwithhistory()"; cd -'
+alias s='cd ~/.local/bin; v -c "call FZFwithhistory()"; cd -'
 alias pls='cd ~/music/library/pls; v -c "call FZFwithhistory()"; cd -'
 
 # menu's

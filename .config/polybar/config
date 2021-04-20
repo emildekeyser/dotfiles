@@ -67,9 +67,8 @@ font-3 = siji:pixelsize=10;1
 
 modules-left = i3 xwindow
 ; modules-center = 
-modules-right = pulseaudio network date battery
-; modules-right = sync-count pulseaudio usb-wlan wlan eth date battery
-; modules-right = alsa usb-wlan eth date battery
+modules-right = alsa network date battery
+; modules-right = pulseaudio network date battery
 
 tray-position = right
 tray-padding = 2

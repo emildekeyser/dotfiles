@@ -17,7 +17,6 @@ path = .ssh
 path = .zprofile
 path = .zshenv
 path = .zshrc
-path = .trello-cli
 
 path = .config
 path = .local/share
